@@ -1,0 +1,194 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080B12">
+<title>Ugo o Barbeiro</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+ background:#080B12;
+ color:white;
+ font-family:Arial,sans-serif;
+ padding-bottom:85px;
+}
+header{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ padding:20px;
+ border-bottom:1px solid #26364c;
+}
+.logo{
+ color:#D6AD55;
+ font-size:23px;
+ font-weight:900;
+ text-align:center;
+}
+.logo small{
+ display:block;
+ font-size:10px;
+ letter-spacing:3px;
+}
+button{cursor:pointer}
+.icon{
+ background:none;
+ border:0;
+ color:#D6AD55;
+ font-size:24px;
+}
+main{padding:18px}
+.banner{
+ background:linear-gradient(120deg,#102b50,#080B12);
+ border:1px solid #D6AD55;
+ border-radius:18px;
+ padding:25px 20px;
+ margin-bottom:24px;
+}
+.banner h1{
+ font-size:27px;
+ margin-bottom:10px;
+}
+.gold{color:#D6AD55}
+.banner p{
+ color:#c7cbd2;
+ line-height:1.5;
+ margin-bottom:18px;
+}
+.btn{
+ background:linear-gradient(100deg,#D6AD55,#f3d58a);
+ color:#080B12;
+ border:0;
+ padding:14px 20px;
+ border-radius:30px;
+ font-weight:bold;
+ width:100%;
+ font-size:15px;
+}
+h2{
+ font-size:19px;
+ margin:22px 0 14px;
+}
+.grid{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:10px;
+}
+.service{
+ background:#111a29;
+ border:1px solid #26364c;
+ border-radius:14px;
+ padding:17px 5px;
+ text-align:center;
+}
+.service span{
+ display:block;
+ color:#D6AD55;
+ font-size:27px;
+ margin-bottom:9px;
+}
+.service p{font-size:12px}
+.ai{
+ margin-top:22px;
+ background:linear-gradient(135deg,#102c51,#111827);
+ border:1px solid #D6AD55;
+ border-radius:17px;
+ padding:20px;
+}
+.ai h2{margin-top:0;color:#D6AD55}
+.ai p{
+ color:#d2d6dd;
+ line-height:1.5;
+ margin-bottom:15px;
+}
+.outline{
+ background:transparent;
+ color:#D6AD55;
+ border:1px solid #D6AD55;
+ padding:13px;
+ border-radius:30px;
+ width:100%;
+ font-weight:bold;
+}
+.bottom{
+ position:fixed;
+ bottom:0;
+ left:0;
+ width:100%;
+ display:flex;
+ justify-content:space-around;
+ background:#101722;
+ border-top:1px solid #26364c;
+ padding:13px 5px;
+}
+.bottom button{
+ background:none;
+ border:0;
+ color:#aeb8c7;
+ font-size:11px;
+}
+.bottom span{
+ display:block;
+ font-size:21px;
+ margin-bottom:4px;
+}
+.bottom .active{color:#D6AD55}
+</style>
+</head>
+
+<body>
+
+<header>
+<button class="icon" onclick="alert('Menu em construção')">☰</button>
+<div class="logo">UGO<small>O BARBEIRO</small></div>
+<button class="icon" onclick="alert('Notificações em breve')">♧</button>
+</header>
+
+<main>
+
+<section class="banner">
+<h1>ESTILO QUE<br><span class="gold">COMBINA COM VOCÊ!</span></h1>
+<p>Qualidade, estilo e respeito. Sua experiência na barbearia começa aqui.</p>
+<button class="btn" onclick="agendar()">Agendar agora →</button>
+</section>
+
+<h2>Nossos serviços</h2>
+
+<section class="grid">
+<div class="service"><span>✂</span><p>Cortes</p></div>
+<div class="service"><span>♟</span><p>Barba</p></div>
+<div class="service"><span>〰</span><p>Sobrancelha</p></div>
+<div class="service"><span>♨</span><p>Tratamentos</p></div>
+<div class="service"><span>✦</span><p>Combos</p></div>
+<div class="service"><span>🎁</span><p>Pacotes</p></div>
+</section>
+
+<section class="ai">
+<h2>✦ Espelho Virtual IA</h2>
+<p>Experimente um novo visual! Envie sua foto e veja uma simulação de como ficaria com o corte desejado.</p>
+<button class="outline" onclick="alert('Provador virtual será integrado na próxima etapa!')">Experimentar com IA →</button>
+</section>
+
+<h2>Seu próximo visual começa aqui.</h2>
+<button class="btn" onclick="agendar()">Quero agendar meu corte</button>
+
+</main>
+
+<nav class="bottom">
+<button class="active"><span>⌂</span>Início</button>
+<button onclick="agendar()"><span>▦</span>Agendamentos</button>
+<button onclick="alert('Perfil em construção')"><span>♙</span>Perfil</button>
+<button onclick="alert('Mais opções em breve')"><span>•••</span>Mais</button>
+</nav>
+
+<script>
+function agendar(){
+ alert("Em breve você poderá escolher seu serviço, horário e barbeiro!");
+}
+</script>
+
+</body>
+</html>
