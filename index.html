@@ -346,5 +346,13 @@ async function salvarNovaSenha() {
   }
 }
 </script>
+ <script>
+supabaseClient.auth.onAuthStateChange((event, session) => {
+  if (event === 'PASSWORD_RECOVERY') {
+    document.getElementById('login').style.display = 'none';
+    document.getElementById('recuperar-senha').style.display = 'block';
+  }
+});
+</script>
 </body>
 </html>
