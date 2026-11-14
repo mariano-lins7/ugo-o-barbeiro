@@ -1,0 +1,18 @@
+{
+  "name": "Ugo o Barbeiro",
+  "short_name": "Ugo",
+  "description": "Agendamentos e serviços do Ugo o Barbeiro em Cacoal e região.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#080d17",
+  "theme_color": "#080d17",
+  "icons": [
+    {
+      "src": "./ugo-personagem-e-logo.jpg",
+      "sizes": "any",
+      "type": "image/jpeg",
+      "purpose": "any"
+    }
+  ]
+}
