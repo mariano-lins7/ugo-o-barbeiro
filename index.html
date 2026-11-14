@@ -44,7 +44,7 @@ img{background-color:transparent!important;border-radius:0!important;padding:0!i
 .brand-mark,.service-photo,.view-art,.auth-logo,.hero-art,.points-brand img{background:transparent!important;border-radius:0!important;box-shadow:none!important}
 .service-card{background:transparent!important}
 .service-photo{display:block;width:100%;border:0!important;outline:0!important}
-.brand-mark{background:transparent;border:0;border-radius:0;padding:0;box-shadow:none}.brand-mark img{width:100%;height:100%;object-fit:contain;padding:0;background:transparent;border:0;box-shadow:none}.auth-logo{width:150px;height:112px;object-fit:contain;background:transparent;border:0;border-radius:0;padding:0;display:block;margin:0 auto 15px;box-shadow:none}.hero{padding-right:34%}.hero-art{position:absolute;right:5%;top:50%;transform:translateY(-50%);width:min(30%,300px);max-height:245px;object-fit:contain;background:transparent;border:0;border-radius:0;padding:0;box-shadow:none;z-index:1}.view-art{display:flex;align-items:center;gap:16px;padding:13px 16px;margin:10px 0 18px;border-radius:22px;background:transparent;border:0;box-shadow:none}.view-art img{width:92px;height:72px;object-fit:contain;background:transparent;border:0;border-radius:0;padding:0;box-shadow:none;flex:none}.view-art strong{display:block;font:800 15px Manrope;color:var(--gold2);margin-bottom:5px}.view-art span{font-size:12px;line-height:1.5;color:var(--silver)}.points-brand{display:flex;align-items:center;gap:14px;margin-top:10px}.points-brand img{width:104px;height:82px;object-fit:contain;background:transparent;border:0;border-radius:0;padding:0;box-shadow:none}@media(max-width:760px){.hero{padding-right:21px}.hero-art{width:118px;height:100px;right:15px;top:auto;bottom:16px;transform:none;opacity:.22}.hero-copy{z-index:2}.view-art{gap:12px;padding:11px}.view-art img{width:78px;height:62px}.auth-logo{width:132px;height:100px}}
+.brand-mark{background:transparent;border:0;border-radius:0;padding:0;box-shadow:none}.brand-mark img{width:100%;height:100%;object-fit:cover!important;object-position:50% 89%!important;padding:0;background:transparent;border:0;box-shadow:none}.auth-logo{width:150px;height:112px;object-fit:contain;background:transparent;border:0;border-radius:0;padding:0;display:block;margin:0 auto 15px;box-shadow:none}.hero{padding-right:34%}.hero-art{position:absolute;right:5%;top:50%;transform:translateY(-50%);width:min(30%,300px);height:180px;max-height:245px;object-fit:cover!important;object-position:50% 89%!important;background:transparent;border:0;border-radius:0;padding:0;box-shadow:none;z-index:1}.view-art{display:flex;align-items:center;gap:16px;padding:13px 16px;margin:10px 0 18px;border-radius:22px;background:transparent;border:0;box-shadow:none}.view-art img{width:92px;height:72px;object-fit:cover!important;object-position:50% 89%!important;background:transparent;border:0;border-radius:0;padding:0;box-shadow:none;flex:none}.view-art strong{display:block;font:800 15px Manrope;color:var(--gold2);margin-bottom:5px}.view-art span{font-size:12px;line-height:1.5;color:var(--silver)}.points-brand{display:flex;align-items:center;gap:14px;margin-top:10px}.points-brand img{width:104px;height:82px;object-fit:cover!important;object-position:50% 89%!important;background:transparent;border:0;border-radius:0;padding:0;box-shadow:none}@media(max-width:760px){.hero{padding-right:21px}.hero-art{width:118px;height:100px;right:15px;top:auto;bottom:16px;transform:none;opacity:.22}.hero-copy{z-index:2}.view-art{gap:12px;padding:11px}.view-art img{width:78px;height:62px}.auth-logo{width:132px;height:100px}}
 /* Logos transparentes: sem molduras, contornos ou sombras */
 img,picture,figure,.service-card,.service-photo,.view-art,.brand-mark,.auth-logo,.hero-art,.points-brand img{
  border:0!important;outline:0!important;box-shadow:none!important;
@@ -56,7 +56,7 @@ img,picture,figure,.service-card,.service-photo,.view-art,.brand-mark,.auth-logo
 .brand-mark img,.auth-logo,.hero-art,.view-art img,.points-brand img{
  object-fit:contain;background:transparent!important;border:0!important;outline:0!important;box-shadow:none!important;
 }
-.auth-logo{width:150px;height:112px;display:block;margin:0 auto 15px}
+.auth-logo{width:150px;height:112px;display:block;margin:0 auto 15px;object-fit:cover!important;object-position:50% 56%!important}
 .hero-art{border:0!important;box-shadow:none!important}
 .view-art{border:0!important;box-shadow:none!important}
 .service-photo{border:0!important;outline:0!important;box-shadow:none!important}
@@ -65,7 +65,7 @@ img,picture,figure,.service-card,.service-photo,.view-art,.brand-mark,.auth-logo
 <body>
 <div id="auth-screen" class="auth-screen">
  <section class="auth-card">
-  <div class="auth-brand"><img class="auth-logo" src="./ugo-logo-principal.svg" alt="Logo Ugo o Barbeiro"><h1>UGO O BARBEIRO</h1><p>Atendimento exclusivo para moradores de Cacoal e região.</p></div>
+  <div class="auth-brand"><img class="auth-logo" src="./ugo-identidade-vertical.png" alt="Logo Ugo o Barbeiro"><h1>UGO O BARBEIRO</h1><p>Atendimento exclusivo para moradores de Cacoal e região.</p></div>
   <div id="auth-login">
    <div class="field"><label for="auth-email">E-mail</label><input id="auth-email" type="email" autocomplete="email" placeholder="seuemail@exemplo.com"></div>
    <div class="field"><label for="auth-password">Senha</label><input id="auth-password" type="password" autocomplete="current-password" placeholder="Sua senha"></div>
@@ -90,12 +90,12 @@ img,picture,figure,.service-card,.service-photo,.view-art,.brand-mark,.auth-logo
 </div>
 <div id="app" class="hidden">
  <header class="topbar">
-  <div class="brand"><div class="brand-mark"><img src="./ugo-logo-horizontal.svg" alt="Ugo o Barbeiro"></div><div class="brand-name">UGO<small>O BARBEIRO</small></div></div>
+  <div class="brand"><div class="brand-mark"><img src="./ugo-identidade-vertical.png" alt="Ugo o Barbeiro"></div><div class="brand-name">UGO<small>O BARBEIRO</small></div></div>
   <div class="top-actions"><button class="round-btn" aria-label="Minha conta" onclick="navigate('account')">♙</button><button class="round-btn" aria-label="Sair da conta" onclick="logout()">↪</button></div>
  </header>
  <main class="shell">
   <section id="view-home" class="view active">
-   <div class="hero"><img class="hero-art" src="./ugo-logo-horizontal.svg" alt="Identidade visual Ugo o Barbeiro"><div class="hero-copy"><div class="eyebrow">Barbearia • Estilo • Experiência</div><h1>Seu próximo visual começa <span>aqui.</span></h1><p>Escolha seu serviço, reserve seu horário e acompanhe sua jornada com a gente.</p><div class="actions"><button class="btn btn-primary" onclick="navigate('schedule')">AGENDAR MEU CORTE →</button><button class="btn btn-secondary" onclick="navigate('catalog')">VER SERVIÇOS</button></div></div></div>
+   <div class="hero"><img class="hero-art" src="./ugo-identidade-vertical.png" alt="Identidade visual Ugo o Barbeiro"><div class="hero-copy"><div class="eyebrow">Barbearia • Estilo • Experiência</div><h1>Seu próximo visual começa <span>aqui.</span></h1><p>Escolha seu serviço, reserve seu horário e acompanhe sua jornada com a gente.</p><div class="actions"><button class="btn btn-primary" onclick="navigate('schedule')">AGENDAR MEU CORTE →</button><button class="btn btn-secondary" onclick="navigate('catalog')">VER SERVIÇOS</button></div></div></div>
    <div class="section-head"><div><h2>O que você procura?</h2><p>Acesse rapidamente cada área do aplicativo.</p></div></div>
    <div class="quick-grid">
     <div class="quick-card" onclick="navigate('schedule')"><span class="quick-icon">▦</span><div><strong>Agendamentos</strong><span>Escolha dia e horário</span></div></div>
@@ -108,7 +108,7 @@ img,picture,figure,.service-card,.service-photo,.view-art,.brand-mark,.auth-logo
    <div class="panel"><div class="eyebrow">Sua experiência Ugo</div><h2 style="margin-top:8px">Cada visita vale mais.</h2><p class="muted">Acompanhe seus cortes concluídos e suas estrelas na área de fidelidade.</p><button class="btn btn-secondary" onclick="navigate('points')">VER MINHAS ESTRELAS →</button></div>
   </section>
   <section id="view-schedule" class="view">
-   <div class="view-art"><img src="./ugo-logo-horizontal.svg" alt="Ugo o Barbeiro"><div><strong>Seu horário, seu estilo.</strong><span>Agende com praticidade e venha viver a experiência Ugo.</span></div></div>
+   <div class="view-art"><img src="./ugo-identidade-vertical.png" alt="Ugo o Barbeiro"><div><strong>Seu horário, seu estilo.</strong><span>Agende com praticidade e venha viver a experiência Ugo.</span></div></div>
    <div class="section-head"><div><div class="eyebrow">Reserva online</div><h2>Agende seu horário</h2><p>Atendimento de terça a sábado. Escolha um horário entre 14h e 20h30.</p></div></div>
    <div class="panel">
     <div class="form-grid">
@@ -122,19 +122,19 @@ img,picture,figure,.service-card,.service-photo,.view-art,.brand-mark,.auth-logo
    <div class="panel"><h3>Seus próximos horários</h3><div id="schedule-bookings" class="booking-list muted">Carregando...</div></div>
   </section>
   <section id="view-catalog" class="view">
-   <div class="view-art"><img src="./ugo-logo-horizontal.svg" alt="Ugo o Barbeiro"><div><strong>Identidade Ugo.</strong><span>Conheça os cortes, serviços e cuidados disponíveis.</span></div></div>
+   <div class="view-art"><img src="./ugo-identidade-vertical.png" alt="Ugo o Barbeiro"><div><strong>Identidade Ugo.</strong><span>Conheça os cortes, serviços e cuidados disponíveis.</span></div></div>
    <div class="section-head"><div><div class="eyebrow">Menu de serviços</div><h2>Cortes, cuidados e valores</h2><p>Veja os serviços disponíveis antes de reservar.</p></div></div>
    <div id="catalog-services" class="service-grid"><div class="panel muted">Carregando catálogo...</div></div>
   </section>
   <section id="view-points" class="view">
    <div class="section-head"><div><div class="eyebrow">Clube Ugo</div><h2>Minhas estrelas</h2><p>Seu histórico de fidelidade em um só lugar.</p></div></div>
-   <div class="points-hero"><div class="eyebrow">Seu saldo atual</div><div class="points-brand"><img src="./ugo-logo-horizontal.svg" alt="Ugo o Barbeiro"><div><div class="points-number"><span id="points-count">0</span> <span class="points-star">★</span></div><p class="muted">Estrelas da sua jornada Ugo</p></div></div><p class="muted">1 estrela por atendimento concluído e registrado no aplicativo.</p><div class="progress-track"><div id="points-progress" class="progress-fill"></div></div><small id="points-next" class="muted">Continue frequentando para acumular estrelas.</small></div>
+   <div class="points-hero"><div class="eyebrow">Seu saldo atual</div><div class="points-brand"><img src="./ugo-identidade-vertical.png" alt="Ugo o Barbeiro"><div><div class="points-number"><span id="points-count">0</span> <span class="points-star">★</span></div><p class="muted">Estrelas da sua jornada Ugo</p></div></div><p class="muted">1 estrela por atendimento concluído e registrado no aplicativo.</p><div class="progress-track"><div id="points-progress" class="progress-fill"></div></div><small id="points-next" class="muted">Continue frequentando para acumular estrelas.</small></div>
    <div class="panel"><h3>Como funciona</h3><p class="muted">Cada agendamento marcado como concluído pela barbearia soma uma estrela ao seu perfil. Seus pontos ficam vinculados à sua conta.</p></div>
    <div class="panel"><h3>Seu histórico de visitas</h3><div id="points-history" class="booking-list muted">Carregando histórico...</div></div>
   </section>
   <section id="view-location" class="view">
    <div class="section-head"><div><div class="eyebrow">Estamos esperando por você</div><h2>Endereço e localização</h2><p>Encontre a barbearia e trace sua rota.</p></div></div>
-   <div class="location-card"><div class="view-art"><img src="./ugo-logo-horizontal.svg" alt="Ugo o Barbeiro"><div><strong>Ugo o Barbeiro</strong><span>Seu estilo começa aqui.</span></div></div><div class="eyebrow">Ugo o Barbeiro</div><h2 id="business-address">Avenida Paraná, 111</h2><p id="business-reference" class="muted">Cacoal – Rondônia. Atendimento exclusivo para moradores de Cacoal e região. Funcionamento: terça a sábado, das 14h às 20h30.</p><div class="map-placeholder">⌖<div><span>Localização da barbearia</span></div></div><button class="btn btn-primary btn-block" onclick="openMap()">ABRIR ROTA NO MAPA ↗</button><p class="help" style="margin-top:12px">O mapa abrirá a localização pesquisada pelo endereço informado. Confira o número no mapa antes de iniciar a rota.</p></div>
+   <div class="location-card"><div class="view-art"><img src="./ugo-identidade-vertical.png" alt="Ugo o Barbeiro"><div><strong>Ugo o Barbeiro</strong><span>Seu estilo começa aqui.</span></div></div><div class="eyebrow">Ugo o Barbeiro</div><h2 id="business-address">Avenida Paraná, 111</h2><p id="business-reference" class="muted">Cacoal – Rondônia. Atendimento exclusivo para moradores de Cacoal e região. Funcionamento: terça a sábado, das 14h às 20h30.</p><div class="map-placeholder">⌖<div><span>Localização da barbearia</span></div></div><button class="btn btn-primary btn-block" onclick="openMap()">ABRIR ROTA NO MAPA ↗</button><p class="help" style="margin-top:12px">O mapa abrirá a localização pesquisada pelo endereço informado. Confira o número no mapa antes de iniciar a rota.</p></div>
   </section>
   <section id="view-admin" class="view">
    <div class="admin-hero"><div class="eyebrow">Área restrita • Ugo o Barbeiro</div><h1>Painel do administrador</h1><p>Gerencie a agenda, acompanhe os clientes e organize o atendimento da barbearia.</p></div>
