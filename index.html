@@ -143,6 +143,24 @@ h2{
  margin-bottom:4px;
 }
 .bottom .active{color:#D6AD55}
+
+.account-view{display:none;margin-top:18px}
+.account-hero{position:relative;overflow:hidden;border:1px solid #D6AD55;border-radius:20px;background:linear-gradient(135deg,#12345d,#080B12 75%);padding:18px;margin-bottom:22px}
+.account-hero img{display:block;width:100%;max-height:210px;object-fit:contain;border-radius:12px;margin-bottom:12px}
+.account-hero h1{font-size:24px;margin:8px 0;color:#f0d28a}
+.account-hero p{color:#cbd5e1;font-size:13px;line-height:1.5}
+.account-panel{background:linear-gradient(145deg,#14243b,#0c111b);border:1px solid #34445b;border-radius:16px;padding:16px;margin:12px 0}
+.account-panel h3{color:#D6AD55;font-size:16px;margin-bottom:10px}
+.account-muted{color:#aeb8c7;font-size:13px;line-height:1.5}
+.account-points{font-size:28px;color:#f0d28a;font-weight:800;margin:7px 0}
+.account-list{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.account-service{background:#111a29;border:1px solid #34445b;border-radius:13px;overflow:hidden}
+.account-service img{width:100%;height:115px;object-fit:cover;background:#0b1422}
+.account-service div{padding:11px}
+.account-service strong{font-size:13px}
+.account-service .price{color:#f0d28a;font-weight:bold;margin-top:7px}
+.account-view .silver{color:#cbd5e1}
+
 </style>
 </head>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -299,12 +317,36 @@ testarConexao();
   <button class="outline" style="margin-top:12px;" onclick="voltarLogin()">VOLTAR AO LOGIN</button>
 </section>
 </div>
+<section id="minha-conta" class="account-view">
+  <div class="account-hero">
+    <img src="ugo-identidade-vertical.jpg" alt="Identidade visual Ugo o Barbeiro">
+    <h1>MINHA CONTA</h1>
+    <p>Seu estilo, seus agendamentos e suas estrelas em um só lugar.</p>
+  </div>
+  <div class="account-panel">
+    <h3>✦ Meu perfil</h3>
+    <p id="conta-email" class="account-muted">Carregando seus dados...</p>
+    <p class="account-muted silver" style="margin-top:6px">Cliente Ugo o Barbeiro</p>
+  </div>
+  <div class="account-panel">
+    <h3>★ Minhas estrelas</h3>
+    <div class="account-points"><span id="conta-pontos">0</span> ★</div>
+    <p class="account-muted">Seus pontos de fidelidade aparecerão aqui conforme os cortes forem registrados.</p>
+  </div>
+  <h2>Meus agendamentos</h2>
+  <div id="lista-agendamentos" class="account-panel account-muted">Seus próximos agendamentos aparecerão aqui quando forem cadastrados.</div>
+  <h2>Histórico de cortes</h2>
+  <div id="historico-cortes" class="account-panel account-muted">Seus cortes realizados aparecerão aqui.</div>
+  <h2>Cortes e preços</h2>
+  <div id="catalogo-conta" class="account-list"><div class="account-panel account-muted">Carregando catálogo...</div></div>
+  <button class="outline" style="margin-top:20px" onclick="voltarInicio()">VOLTAR AO INÍCIO</button>
+</section>
 </main>
 
 <nav id="bottom-nav" class="bottom">
 <button class="active"><span>⌂</span>Início</button>
 <button onclick="agendar()"><span>▦</span>Agendamentos</button>
-<button onclick="alert('Perfil em construção')"><span>♙</span>Perfil</button>
+<button onclick="abrirMinhaConta()"><span>♙</span>Minha conta</button>
 <button onclick="alert('Mais opções em breve')"><span>•••</span>Mais</button>
 </nav>
 
@@ -416,6 +458,51 @@ function ativarAplicativo(){
 supabaseClient.auth.getSession().then(({data})=>{
   if(data.session) ativarAplicativo();
 });
+</script>
+
+
+<script>
+function voltarInicio(){
+ document.getElementById('minha-conta').style.display='none';
+ document.getElementById('app-content').style.display='block';
+}
+async function abrirMinhaConta(){
+ document.getElementById('app-content').style.display='none';
+ document.getElementById('minha-conta').style.display='block';
+ document.querySelectorAll('.bottom button').forEach(b=>b.classList.remove('active'));
+ const perfil=document.querySelector('.bottom button[onclick="abrirMinhaConta()"]');
+ if(perfil) perfil.classList.add('active');
+ const {data:{user}}=await supabaseClient.auth.getUser();
+ document.getElementById('conta-email').textContent=user?.email || 'Conta não identificada';
+ carregarCatalogoConta();
+ carregarAgendamentosConta(user?.id);
+}
+async function carregarCatalogoConta(){
+ const alvo=document.getElementById('catalogo-conta');
+ const {data,error}=await supabaseClient.from('services').select('*').eq('active',true);
+ if(error){alvo.innerHTML='<div class="account-panel account-muted">Não foi possível carregar os serviços agora.</div>';return;}
+ if(!data?.length){alvo.innerHTML='<div class="account-panel account-muted">Nenhum serviço disponível no momento.</div>';return;}
+ alvo.innerHTML=data.map(s=>{
+  const nome=s.name||s.title||'Serviço';
+  const preco=s.price??s.value??s.valor;
+  const foto=s.image_url||s.photo_url||s.image||'';
+  return '<article class="account-service">'+(foto?'<img src="'+foto+'" alt="'+nome.replace(/"/g,'&quot;')+'">':'<div style="height:115px;display:grid;place-items:center;color:#D6AD55;font-size:32px">✂</div>')+'<div><strong>'+nome+'</strong><div class="price">'+(preco!=null?'R$ '+Number(preco).toFixed(2).replace('.',','):'Consulte o preço')+'</div></div></article>';
+ }).join('');
+}
+async function carregarAgendamentosConta(userId){
+ if(!userId)return;
+ const {data,error}=await supabaseClient.from('bookings').select('*').eq('user_id',userId);
+ const lista=document.getElementById('lista-agendamentos');
+ const historico=document.getElementById('historico-cortes');
+ if(error){lista.textContent='Não foi possível consultar seus agendamentos agora.';return;}
+ if(!data?.length){lista.textContent='Você ainda não possui agendamentos.';historico.textContent='Seu histórico aparecerá aqui após o primeiro corte.';return;}
+ const dataTexto=b=>{const v=b.scheduled_at||b.booking_date||b.date||b.created_at; if(!v)return 'Data a confirmar';const d=new Date(v);return isNaN(d)?String(v):d.toLocaleString('pt-BR',{dateStyle:'short',timeStyle:'short'});};
+ const nome=b=>b.service_name||b.service||b.title||'Agendamento';
+ const pendentes=data.filter(b=>!['completed','concluido','concluído','cancelled','cancelado'].includes(String(b.status||'').toLowerCase()));
+ const feitos=data.filter(b=>['completed','concluido','concluído'].includes(String(b.status||'').toLowerCase()));
+ lista.innerHTML=pendentes.length?pendentes.map(b=>'<p style="padding:7px 0;border-bottom:1px solid #34445b"><strong>'+nome(b)+'</strong><br><span class="account-muted">'+dataTexto(b)+' • '+(b.status||'Pendente')+'</span></p>').join(''):'Você não possui agendamentos futuros.';
+ historico.innerHTML=feitos.length?feitos.map(b=>'<p style="padding:7px 0;border-bottom:1px solid #34445b"><strong>'+nome(b)+'</strong><br><span class="account-muted">'+dataTexto(b)+'</span></p>').join(''):'Nenhum corte concluído registrado ainda.';
+}
 </script>
 
 </body>
