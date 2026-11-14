@@ -251,7 +251,29 @@ testarConexao();
 
 <h2>Seu próximo visual começa aqui.</h2>
 <button class="btn" onclick="agendar()">Quero agendar meu corte</button>
+<section id="recuperar-senha" style="
+  display:none;
+  margin:20px 0;
+  padding:25px;
+  background:linear-gradient(145deg,#14243b,#090d15);
+  border:1px solid #D6AD55;
+  border-radius:20px;
+">
+  <h2 style="color:#D6AD55;">Nova senha</h2>
+  <p style="color:#aeb8c7;margin:12px 0 20px;">
+    Crie uma nova senha para sua conta.
+  </p>
 
+  <input id="nova-senha" type="password"
+    placeholder="Digite sua nova senha"
+    style="width:100%;padding:15px;margin-bottom:15px;
+    background:#080B12;color:white;border:1px solid #34445b;
+    border-radius:10px;">
+
+  <button class="btn" onclick="salvarNovaSenha()">
+    SALVAR NOVA SENHA
+  </button>
+</section>
 </main>
 
 <nav class="bottom">
