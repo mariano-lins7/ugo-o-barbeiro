@@ -146,7 +146,14 @@ const SUPABASE_KEY = 'sb_publishable_WxLEJ8FFikq7T5jlj-o0lg_sw5aqmOn';
 
 const supabaseClient = window.supabase.createClient(
   SUPABASE_URL,
-  SUPABASE_KEY
+  SUPABASE_KEY,
+  {
+    auth: {
+      detectSessionInUrl: true,
+      persistSession: true,
+      autoRefreshToken: true
+    }
+  }
 );
  async function testarConexao() {
   const { data, error } = await supabaseClient
