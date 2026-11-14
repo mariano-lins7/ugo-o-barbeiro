@@ -1,6 +1,6 @@
-# Converts the three existing Ugo identity artworks into transparent PNG assets.
+# Converts the three existing Ugo identity artworks into clean transparent PNG assets.
 from pathlib import Path
-from PIL import Image
+from PIL import Image, ImageFilter
 from rembg import remove, new_session
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -23,5 +23,8 @@ for name in FILES:
         alpha_matting_background_threshold=10,
         alpha_matting_erode_size=8,
     ).convert("RGBA")
+    alpha = result.getchannel("A").point(lambda value: 0 if value < 190 else min(255, int((value - 190) * 3.92)))
+    alpha = alpha.filter(ImageFilter.GaussianBlur(0.45))
+    result.putalpha(alpha)
     result.save(ROOT / (source.stem + ".png"), format="PNG", optimize=True)
-    print(f"Created transparent PNG: {source.stem}.png")
+    print(f"Created clean transparent PNG: {source.stem}.png")
