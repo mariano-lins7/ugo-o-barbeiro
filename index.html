@@ -318,6 +318,26 @@ async function cadastrar() {
   }
 }
 </script>
+<script>
+async function salvarNovaSenha() {
+  const novaSenha = document.getElementById('nova-senha').value;
 
+  if (novaSenha.length < 6) {
+    alert('A senha precisa ter pelo menos 6 caracteres.');
+    return;
+  }
+
+  const { error } = await supabaseClient.auth.updateUser({
+    password: novaSenha
+  });
+
+  if (error) {
+    alert('Erro ao alterar senha: ' + error.message);
+  } else {
+    alert('Senha alterada com sucesso!');
+    document.getElementById('recuperar-senha').style.display = 'none';
+  }
+}
+</script>
 </body>
 </html>
