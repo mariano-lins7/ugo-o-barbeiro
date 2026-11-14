@@ -264,6 +264,36 @@ testarConexao();
 <script>
 function agendar(){
  alert("Em breve você poderá escolher seu serviço, horário e barbeiro!");
+}async function entrar() {
+  const email = document.getElementById('email').value;
+  const senha = document.getElementById('senha').value;
+
+  const { data, error } = await supabaseClient.auth.signInWithPassword({
+    email: email,
+    password: senha
+  });
+
+  if (error) {
+    alert('Erro ao entrar: ' + error.message);
+  } else {
+    alert('Bem-vindo ao Ugo o Barbeiro!');
+  }
+}
+
+async function cadastrar() {
+  const email = document.getElementById('email').value;
+  const senha = document.getElementById('senha').value;
+
+  const { data, error } = await supabaseClient.auth.signUp({
+    email: email,
+    password: senha
+  });
+
+  if (error) {
+    alert('Erro ao criar conta: ' + error.message);
+  } else {
+    alert('Cadastro iniciado! Confira seu e-mail para confirmar a conta.');
+  }
 }
 </script>
 
