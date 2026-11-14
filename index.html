@@ -407,6 +407,7 @@ supabaseClient.auth.onAuthStateChange((event, session) => {
 });
 </script>
 
+<script>
 function ativarAplicativo(){
   document.body.classList.add('autenticado');
   document.body.classList.remove('modo-recuperacao');
@@ -415,6 +416,7 @@ function ativarAplicativo(){
 supabaseClient.auth.getSession().then(({data})=>{
   if(data.session) ativarAplicativo();
 });
+</script>
 
 </body>
 </html>
