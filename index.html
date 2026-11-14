@@ -267,25 +267,28 @@ testarConexao();
 <section id="recuperar-senha" style="
   display:none;
   margin:20px 0;
-  padding:25px;
+  padding:28px 22px;
   background:linear-gradient(145deg,#14243b,#090d15);
   border:1px solid #D6AD55;
   border-radius:20px;
+  box-shadow:0 12px 35px #0008;
 ">
-  <h2 style="color:#D6AD55;">Nova senha</h2>
-  <p style="color:#aeb8c7;margin:12px 0 20px;">
-    Crie uma nova senha para sua conta.
-  </p>
-
-  <input id="nova-senha" type="password"
-    placeholder="Digite sua nova senha"
-    style="width:100%;padding:15px;margin-bottom:15px;
-    background:#080B12;color:white;border:1px solid #34445b;
-    border-radius:10px;">
-
-  <button class="btn" onclick="salvarNovaSenha()">
-    SALVAR NOVA SENHA
-  </button>
+  <div style="text-align:center;margin-bottom:22px;">
+    <div style="color:#D6AD55;font-size:12px;letter-spacing:3px;">UGO O BARBEIRO</div>
+    <h2 style="color:#D6AD55;font-size:25px;margin:12px 0;">CRIAR NOVA SENHA</h2>
+    <p style="color:#aeb8c7;line-height:1.5;">Digite e confirme sua nova senha para recuperar o acesso à sua conta.</p>
+  </div>
+  <label for="nova-senha" style="color:#D6AD55;font-size:13px;">Nova senha</label>
+  <input id="nova-senha" type="password" autocomplete="new-password"
+    placeholder="Mínimo de 6 caracteres"
+    style="width:100%;padding:16px;margin:8px 0 17px;background:#080B12;color:white;border:1px solid #34445b;border-radius:12px;font-size:15px;">
+  <label for="confirmar-nova-senha" style="color:#D6AD55;font-size:13px;">Confirmar nova senha</label>
+  <input id="confirmar-nova-senha" type="password" autocomplete="new-password"
+    placeholder="Digite a senha novamente"
+    style="width:100%;padding:16px;margin:8px 0 15px;background:#080B12;color:white;border:1px solid #34445b;border-radius:12px;font-size:15px;">
+  <p id="mensagem-recuperacao" role="status" style="display:none;margin:0 0 15px;font-size:13px;line-height:1.5;"></p>
+  <button id="btn-salvar-senha" class="btn" onclick="salvarNovaSenha()">SALVAR NOVA SENHA</button>
+  <button class="outline" style="margin-top:12px;" onclick="voltarLogin()">VOLTAR AO LOGIN</button>
 </section>
 </main>
 
@@ -337,31 +340,57 @@ async function esqueciSenha() {
 }
 </script>
 <script>
+function mostrarMensagemRecuperacao(texto, sucesso = false) {
+  const el = document.getElementById('mensagem-recuperacao');
+  el.textContent = texto;
+  el.style.display = 'block';
+  el.style.color = sucesso ? '#8ee0a1' : '#ff9999';
+}
+
 async function salvarNovaSenha() {
   const novaSenha = document.getElementById('nova-senha').value;
+  const confirmar = document.getElementById('confirmar-nova-senha').value;
+  const botao = document.getElementById('btn-salvar-senha');
 
   if (novaSenha.length < 6) {
-    alert('A senha precisa ter pelo menos 6 caracteres.');
+    mostrarMensagemRecuperacao('A senha precisa ter pelo menos 6 caracteres.');
+    return;
+  }
+  if (novaSenha !== confirmar) {
+    mostrarMensagemRecuperacao('As senhas não conferem. Digite novamente.');
     return;
   }
 
-  const { error } = await supabaseClient.auth.updateUser({
-    password: novaSenha
-  });
+  botao.disabled = true;
+  botao.textContent = 'SALVANDO...';
+  const { error } = await supabaseClient.auth.updateUser({ password: novaSenha });
+  botao.disabled = false;
+  botao.textContent = 'SALVAR NOVA SENHA';
 
   if (error) {
-    alert('Erro ao alterar senha: ' + error.message);
+    mostrarMensagemRecuperacao('Não foi possível alterar a senha: ' + error.message);
   } else {
-    alert('Senha alterada com sucesso!');
-    document.getElementById('recuperar-senha').style.display = 'none';
+    mostrarMensagemRecuperacao('Senha alterada com sucesso! Agora você já pode entrar com a nova senha.', true);
+    document.getElementById('nova-senha').value = '';
+    document.getElementById('confirmar-nova-senha').value = '';
+    setTimeout(() => {
+      document.getElementById('recuperar-senha').style.display = 'none';
+      document.getElementById('login').style.display = 'block';
+    }, 1800);
   }
 }
-</script>
+
+function voltarLogin() {
+  document.getElementById('recuperar-senha').style.display = 'none';
+  document.getElementById('login').style.display = 'block';
+  document.getElementById('login').scrollIntoView({behavior:'smooth', block:'start'});
+}</script>
  <script>
 supabaseClient.auth.onAuthStateChange((event, session) => {
   if (event === 'PASSWORD_RECOVERY') {
     document.getElementById('login').style.display = 'none';
     document.getElementById('recuperar-senha').style.display = 'block';
+    document.getElementById('recuperar-senha').scrollIntoView({behavior:'smooth', block:'start'});
   }
 });
 </script>
