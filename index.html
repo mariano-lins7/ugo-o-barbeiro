@@ -172,7 +172,60 @@ testarConexao();
 </header>
 
 <main>
+<section id="login" style="
+  margin:20px 0 28px;
+  padding:28px 22px;
+  background:linear-gradient(145deg,#14243b,#090d15 75%);
+  border:1px solid #b9954b;
+  border-radius:22px;
+  box-shadow:0 12px 35px #0008;
+">
+  <div style="text-align:center;margin-bottom:25px;">
+    <div style="font-size:13px;color:#D6AD55;letter-spacing:4px;">
+      UGO O BARBEIRO
+    </div>
+    <h2 style="font-size:27px;margin:14px 0 8px;color:white;">
+      SEJA BEM-VINDO
+    </h2>
+    <p style="color:#aeb8c7;font-size:13px;">
+      Seu estilo começa com um acesso.
+    </p>
+    <p style="
+      color:#D6AD55;
+      font-size:11px;
+      margin-top:12px;
+      opacity:0.9;
+    ">
+      A criação de conta serve para agendamentos de cortes.
+    </p>
+  </div>
 
+  <label style="color:#D6AD55;font-size:13px;">E-mail</label>
+  <input id="email" type="email"
+    placeholder="Digite seu e-mail"
+    style="width:100%;padding:16px;margin:8px 0 18px;
+    background:#080B12;color:white;border:1px solid #34445b;
+    border-radius:12px;font-size:15px;">
+
+  <label style="color:#D6AD55;font-size:13px;">Senha</label>
+  <input id="senha" type="password"
+    placeholder="Digite sua senha"
+    style="width:100%;padding:16px;margin:8px 0 22px;
+    background:#080B12;color:white;border:1px solid #34445b;
+    border-radius:12px;font-size:15px;">
+
+  <button class="btn" onclick="entrar()">
+    ENTRAR NA MINHA CONTA →
+  </button>
+
+  <p style="text-align:center;color:#aeb8c7;margin:20px 0 12px;font-size:13px;">
+    Ainda não tem cadastro?
+  </p>
+
+  <button class="outline" onclick="cadastrar()">
+    CRIAR MINHA CONTA
+  </button>
+</section>
 <section class="banner">
 <h1>ESTILO QUE<br><span class="gold">COMBINA COM VOCÊ!</span></h1>
 <p>Qualidade, estilo e respeito. Sua experiência na barbearia começa aqui.</p>
