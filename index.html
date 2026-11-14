@@ -15,6 +15,13 @@ body{
  font-family:Arial,sans-serif;
  padding-bottom:85px;
 }
+body:not(.autenticado){height:100vh;overflow:hidden;padding-bottom:0}
+body:not(.autenticado) #app-content,
+body:not(.autenticado) #bottom-nav{display:none!important}
+body.modo-recuperacao{height:auto!important;min-height:100vh;overflow-y:auto!important;padding-bottom:25px}
+body:not(.autenticado) header .icon{visibility:hidden}
+body:not(.autenticado) main{padding:10px 18px}
+body:not(.autenticado) #login{margin:8px 0 0!important;padding:22px 20px!important}
 header{
  display:flex;
  justify-content:space-between;
@@ -239,6 +246,7 @@ testarConexao();
     CRIAR MINHA CONTA
   </button>
 </section>
+<div id="app-content">
 <section class="banner">
 <h1>ESTILO QUE<br><span class="gold">COMBINA COM VOCÊ!</span></h1>
 <p>Qualidade, estilo e respeito. Sua experiência na barbearia começa aqui.</p>
@@ -290,9 +298,10 @@ testarConexao();
   <button id="btn-salvar-senha" class="btn" onclick="salvarNovaSenha()">SALVAR NOVA SENHA</button>
   <button class="outline" style="margin-top:12px;" onclick="voltarLogin()">VOLTAR AO LOGIN</button>
 </section>
+</div>
 </main>
 
-<nav class="bottom">
+<nav id="bottom-nav" class="bottom">
 <button class="active"><span>⌂</span>Início</button>
 <button onclick="agendar()"><span>▦</span>Agendamentos</button>
 <button onclick="alert('Perfil em construção')"><span>♙</span>Perfil</button>
@@ -317,7 +326,7 @@ async function entrar() {
   if (error) alert('Erro ao entrar: ' + error.message);
   else {
     alert('Bem-vindo ao Ugo o Barbeiro!');
-    document.getElementById('login').style.display = 'none';
+    ativarAplicativo();
   }
 }
 
@@ -381,18 +390,31 @@ async function salvarNovaSenha() {
 }
 
 function voltarLogin() {
+  document.body.classList.remove('modo-recuperacao');
   document.getElementById('recuperar-senha').style.display = 'none';
   document.getElementById('login').style.display = 'block';
   document.getElementById('login').scrollIntoView({behavior:'smooth', block:'start'});
 }</script>
  <script>
 supabaseClient.auth.onAuthStateChange((event, session) => {
+  if (event === 'SIGNED_IN' && session) ativarAplicativo();
   if (event === 'PASSWORD_RECOVERY') {
+    document.body.classList.add('modo-recuperacao');
     document.getElementById('login').style.display = 'none';
     document.getElementById('recuperar-senha').style.display = 'block';
     document.getElementById('recuperar-senha').scrollIntoView({behavior:'smooth', block:'start'});
   }
 });
 </script>
+
+function ativarAplicativo(){
+  document.body.classList.add('autenticado');
+  document.body.classList.remove('modo-recuperacao');
+  document.getElementById('login').style.display='none';
+}
+supabaseClient.auth.getSession().then(({data})=>{
+  if(data.session) ativarAplicativo();
+});
+
 </body>
 </html>
