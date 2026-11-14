@@ -1,515 +1,171 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#080B12">
-
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#080d17">
+<meta name="description" content="Agende seu corte, conheça nossos serviços e acompanhe seus pontos no Ugo o Barbeiro.">
 <title>Ugo o Barbeiro</title>
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{
- background:#080B12;
- color:white;
- font-family:Arial,sans-serif;
- padding-bottom:85px;
-}
-body:not(.autenticado){height:100vh;overflow:hidden;padding-bottom:0}
-body:not(.autenticado) #app-content,
-body:not(.autenticado) #bottom-nav{display:none!important}
-body.modo-recuperacao{height:auto!important;min-height:100vh;overflow-y:auto!important;padding-bottom:25px}
-body:not(.autenticado) header .icon{visibility:hidden}
-body:not(.autenticado) main{padding:10px 18px}
-body:not(.autenticado) #login{margin:8px 0 0!important;padding:22px 20px!important}
-header{
- display:flex;
- justify-content:space-between;
- align-items:center;
- padding:20px;
- border-bottom:1px solid #26364c;
-}
-.logo{
- color:#D6AD55;
- font-size:23px;
- font-weight:900;
- text-align:center;
-}
-.logo small{
- display:block;
- font-size:10px;
- letter-spacing:3px;
-}
-button{cursor:pointer}
-.icon{
- background:none;
- border:0;
- color:#D6AD55;
- font-size:24px;
-}
-main{padding:18px}
-.banner{
- background:linear-gradient(120deg,#102b50,#080B12);
- border:1px solid #D6AD55;
- border-radius:18px;
- padding:25px 20px;
- margin-bottom:24px;
-}
-.banner h1{
- font-size:27px;
- margin-bottom:10px;
-}
-.gold{color:#D6AD55}
-.banner p{
- color:#c7cbd2;
- line-height:1.5;
- margin-bottom:18px;
-}
-.btn{
- background:linear-gradient(100deg,#D6AD55,#f3d58a);
- color:#080B12;
- border:0;
- padding:14px 20px;
- border-radius:30px;
- font-weight:bold;
- width:100%;
- font-size:15px;
-}
-h2{
- font-size:19px;
- margin:22px 0 14px;
-}
-.grid{
- display:grid;
- grid-template-columns:repeat(3,1fr);
- gap:10px;
-}
-.service{
- background:#111a29;
- border:1px solid #26364c;
- border-radius:14px;
- padding:17px 5px;
- text-align:center;
-}
-.service span{
- display:block;
- color:#D6AD55;
- font-size:27px;
- margin-bottom:9px;
-}
-.service p{font-size:12px}
-.ai{
- margin-top:22px;
- background:linear-gradient(135deg,#102c51,#111827);
- border:1px solid #D6AD55;
- border-radius:17px;
- padding:20px;
-}
-.ai h2{margin-top:0;color:#D6AD55}
-.ai p{
- color:#d2d6dd;
- line-height:1.5;
- margin-bottom:15px;
-}
-.outline{
- background:transparent;
- color:#D6AD55;
- border:1px solid #D6AD55;
- padding:13px;
- border-radius:30px;
- width:100%;
- font-weight:bold;
-}
-.bottom{
- position:fixed;
- bottom:0;
- left:0;
- width:100%;
- display:flex;
- justify-content:space-around;
- background:#101722;
- border-top:1px solid #26364c;
- padding:13px 5px;
-}
-.bottom button{
- background:none;
- border:0;
- color:#aeb8c7;
- font-size:11px;
-}
-.bottom span{
- display:block;
- font-size:21px;
- margin-bottom:4px;
-}
-.bottom .active{color:#D6AD55}
-
-.login-brand-images{display:flex;align-items:center;justify-content:center;gap:10px;margin:0 auto 18px;max-width:360px;width:100%}
-.login-brand-images img{display:block;width:calc(50% - 5px);height:142px;object-fit:contain;object-position:center;border-radius:14px;background:linear-gradient(145deg,#10233d,#080B12);border:1px solid #b9954b;padding:7px;box-shadow:0 8px 22px #0007}
-@media(max-height:740px){.login-brand-images img{height:104px}.login-brand-images{margin-bottom:12px}}
-.account-view{display:none;margin-top:18px}
-.account-hero{position:relative;overflow:hidden;border:1px solid #D6AD55;border-radius:20px;background:linear-gradient(135deg,#12345d,#080B12 75%);padding:18px;margin-bottom:22px}
-.account-hero img{display:block;width:100%;max-height:210px;object-fit:contain;border-radius:12px;margin-bottom:12px}
-.account-hero h1{font-size:24px;margin:8px 0;color:#f0d28a}
-.account-hero p{color:#cbd5e1;font-size:13px;line-height:1.5}
-.account-panel{background:linear-gradient(145deg,#14243b,#0c111b);border:1px solid #34445b;border-radius:16px;padding:16px;margin:12px 0}
-.account-panel h3{color:#D6AD55;font-size:16px;margin-bottom:10px}
-.account-muted{color:#aeb8c7;font-size:13px;line-height:1.5}
-.account-points{font-size:28px;color:#f0d28a;font-weight:800;margin:7px 0}
-.account-list{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.account-service{background:#111a29;border:1px solid #34445b;border-radius:13px;overflow:hidden}
-.account-service img{width:100%;height:115px;object-fit:cover;background:#0b1422}
-.account-service div{padding:11px}
-.account-service strong{font-size:13px}
-.account-service .price{color:#f0d28a;font-weight:bold;margin-top:7px}
-.account-view .silver{color:#cbd5e1}
-
+:root{--bg:#080d17;--surface:#101a2a;--surface2:#15243a;--surface3:#1b2d47;--gold:#e4bd69;--gold2:#f4d995;--silver:#c4cedb;--muted:#91a0b5;--white:#f7f8fb;--green:#78d6a0;--red:#ff8585;--shadow:0 18px 48px #0005}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--white);font-family:'DM Sans',Arial,sans-serif;min-height:100vh;padding-bottom:100px}button,input,select{font:inherit}button{cursor:pointer}button:disabled{opacity:.55;cursor:not-allowed}
+.hidden{display:none!important}.shell{max-width:1080px;margin:auto;padding:0 18px}
+.topbar{height:76px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 max(18px,calc((100vw - 1044px)/2));background:#080d17ee;position:sticky;top:0;z-index:20;backdrop-filter:blur(18px)}
+.brand{display:flex;align-items:center;gap:11px;min-width:0}.brand-mark{width:43px;height:43px;border-radius:15px;background:linear-gradient(145deg,#f5d995,#b78635);display:grid;place-items:center;color:#111827;font-size:22px;font-weight:900;box-shadow:0 8px 24px #d6ad5533}.brand-name{font:800 16px Manrope,sans-serif;letter-spacing:.4px}.brand-name small{display:block;color:var(--gold);font-size:9px;letter-spacing:3px;margin-top:2px}.top-actions{display:flex;gap:9px}.round-btn{width:42px;height:42px;border:0;border-radius:15px;background:var(--surface2);color:var(--gold2);font-size:18px}
+main{padding-top:18px}.view{display:none;animation:appear .22s ease}.view.active{display:block}@keyframes appear{from{opacity:.3;transform:translateY(5px)}to{opacity:1;transform:none}}
+.eyebrow{color:var(--gold);font-size:11px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase}.hero{min-height:310px;border-radius:30px;padding:34px;display:flex;align-items:center;position:relative;overflow:hidden;background:radial-gradient(circle at 85% 25%,#28476b 0,transparent 35%),linear-gradient(120deg,#172e4b,#0e1726 70%);box-shadow:var(--shadow);margin:8px 0 28px}.hero:after{content:"✂";position:absolute;right:5%;bottom:-48px;font-size:230px;color:#e4bd6918;transform:rotate(-22deg);pointer-events:none}.hero-copy{position:relative;z-index:1;max-width:560px}.hero h1{font:800 clamp(32px,6vw,54px)/1.08 Manrope,sans-serif;margin:14px 0}.hero h1 span{color:var(--gold2)}.hero p{color:#c0cad8;line-height:1.7;max-width:470px;margin:0 0 23px}.actions{display:flex;gap:12px;flex-wrap:wrap}.btn{border:0;border-radius:16px;padding:15px 20px;font-weight:800;transition:transform .15s,filter .15s}.btn:active{transform:scale(.98)}.btn-primary{background:linear-gradient(110deg,#d6ad55,#f3d995);color:#101827;box-shadow:0 9px 25px #d6ad5528}.btn-secondary{background:#ffffff12;color:var(--gold2);padding:14px 18px}.btn-block{width:100%}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:30px 0 16px}.section-head h2{font:800 23px Manrope,sans-serif;margin:0}.section-head p{margin:5px 0 0;color:var(--muted);font-size:13px}.text-btn{border:0;background:none;color:var(--gold2);font-weight:800;padding:8px 0}
+.quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}.quick-card{padding:20px;border-radius:22px;background:linear-gradient(145deg,var(--surface2),var(--surface));min-height:126px;display:flex;flex-direction:column;justify-content:space-between;cursor:pointer;transition:transform .18s}.quick-card:active{transform:scale(.98)}.quick-icon{font-size:25px;color:var(--gold2)}.quick-card strong{font:700 14px Manrope}.quick-card span:last-child{color:var(--muted);font-size:12px;margin-top:4px}
+.service-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.service-card{overflow:hidden;border-radius:24px;background:var(--surface);box-shadow:0 12px 30px #0002}.service-photo{height:190px;width:100%;object-fit:cover;display:block;background:linear-gradient(135deg,#213b5a,#0c1421)}.service-info{padding:17px}.service-info h3{font:800 16px Manrope;margin:0 0 7px}.service-meta{display:flex;justify-content:space-between;gap:8px;color:var(--muted);font-size:12px}.service-price{color:var(--gold2);font:800 18px Manrope;margin-top:13px}.service-info .btn{margin-top:13px;padding:12px;width:100%;font-size:13px}
+.panel{background:linear-gradient(145deg,var(--surface2),var(--surface));border-radius:24px;padding:22px;box-shadow:var(--shadow);margin:14px 0}.panel h2,.panel h3{font-family:Manrope;margin:0 0 12px}.muted{color:var(--muted);line-height:1.6}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.field{display:flex;flex-direction:column;gap:8px}.field.full{grid-column:1/-1}.field label{font-size:12px;color:var(--silver);font-weight:700}.field input,.field select{width:100%;min-height:52px;background:#091321;color:var(--white);border:0;border-radius:14px;padding:0 15px;outline:2px solid transparent}.field input:focus,.field select:focus{outline-color:#d6ad5577}.field select option{background:#101a2a}.help{font-size:12px;color:var(--muted);line-height:1.5}.notice{padding:14px 16px;border-radius:15px;background:#e4bd6918;color:var(--gold2);font-size:13px;line-height:1.5;margin:14px 0}.toast{position:fixed;z-index:80;left:50%;bottom:100px;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#17263b;color:white;padding:14px 18px;border-radius:16px;box-shadow:var(--shadow);max-width:calc(100% - 30px);width:max-content;transition:.2s}.toast.show{opacity:1;transform:translate(-50%,0)}.toast.error{background:#512b35}.toast.success{background:#173e32}
+.points-hero{border-radius:28px;padding:28px;background:radial-gradient(circle at 90% 20%,#71572c88,transparent 35%),linear-gradient(120deg,#1b3452,#111a29);box-shadow:var(--shadow)}.points-number{font:800 56px Manrope;color:var(--gold2);margin:12px 0 0}.points-star{font-size:23px;color:var(--gold2)}.progress-track{height:11px;border-radius:20px;background:#ffffff18;overflow:hidden;margin:17px 0 9px}.progress-fill{height:100%;width:0;background:linear-gradient(90deg,#bd8d3e,#f5df9e);border-radius:20px}
+.booking-list{display:grid;gap:12px}.booking-item{background:#0c1523;border-radius:18px;padding:16px;display:flex;justify-content:space-between;gap:12px;align-items:center}.booking-item strong{display:block;margin-bottom:5px}.booking-item small{color:var(--muted)}.status{padding:7px 10px;border-radius:30px;font-size:10px;font-weight:800;text-transform:uppercase;background:#d6ad5520;color:var(--gold2);white-space:nowrap}.status.completed{background:#78d6a022;color:var(--green)}.status.cancelled{background:#ff858522;color:var(--red)}
+.location-card{background:linear-gradient(145deg,#1a3552,#101a2a);border-radius:25px;padding:25px}.map-placeholder{height:220px;border-radius:20px;background:linear-gradient(135deg,#1c3551,#0b1422);display:grid;place-items:center;text-align:center;margin:18px 0;color:var(--gold2);font-size:42px}.map-placeholder span{display:block;font-size:13px;color:var(--silver);margin-top:8px}
+.profile-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}.profile-stat{background:#0c1523;border-radius:18px;padding:17px}.profile-stat strong{display:block;color:var(--gold2);font:800 22px Manrope;margin-top:5px}
+.bottom-nav{position:fixed;z-index:30;bottom:0;left:0;right:0;padding:10px max(8px,calc((100vw - 760px)/2)) calc(10px + env(safe-area-inset-bottom));display:grid;grid-template-columns:repeat(5,1fr);gap:5px;background:#0b1320f2;backdrop-filter:blur(18px);box-shadow:0 -10px 30px #0003}.nav-item{border:0;background:none;color:#8291a6;border-radius:15px;padding:8px 3px;font-size:10px;font-weight:700}.nav-item span{display:block;font-size:20px;margin-bottom:4px}.nav-item.active{background:#d6ad551b;color:var(--gold2)}
+.auth-screen{min-height:100vh;display:grid;place-items:center;padding:24px 16px;background:radial-gradient(circle at 50% 0,#1a3658 0,transparent 45%),var(--bg)}.auth-card{width:min(100%,450px);background:linear-gradient(145deg,#172840,#0e1725);border-radius:28px;padding:27px;box-shadow:var(--shadow)}.auth-brand{text-align:center;margin-bottom:25px}.auth-brand .brand-mark{margin:0 auto 12px;width:62px;height:62px;font-size:30px}.auth-brand h1{font:800 24px Manrope;margin:0}.auth-brand p{color:var(--muted);font-size:13px}.auth-card .field{margin:13px 0}.auth-links{display:flex;justify-content:space-between;gap:10px;margin:14px 0}.link-btn{background:none;border:0;color:var(--gold2);font-size:12px;font-weight:700;padding:8px 0}.auth-card .btn{margin-top:10px}.brand-images{display:flex;gap:10px;margin-bottom:20px}.brand-images img{width:50%;height:105px;object-fit:contain;background:#0a1320;border-radius:17px;padding:8px}
+@media(max-width:760px){.shell{padding:0 14px}.topbar{height:68px;padding:0 14px}.hero{min-height:330px;padding:25px 21px;border-radius:25px}.hero:after{right:-5%;font-size:170px}.quick-grid{grid-template-columns:repeat(2,1fr)}.service-grid{grid-template-columns:repeat(2,1fr);gap:11px}.service-photo{height:145px}.service-info{padding:13px}.service-info h3{font-size:14px}.service-price{font-size:16px}.panel{padding:18px}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.section-head h2{font-size:20px}.profile-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:380px){.service-grid{grid-template-columns:1fr 1fr}.service-photo{height:125px}.nav-item{font-size:9px}.hero h1{font-size:31px}.auth-card{padding:22px}}
 </style>
 </head>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<script>
-const SUPABASE_URL = 'https://yucqfhoamnizduvesawd.supabase.co';
-const SUPABASE_KEY = 'sb_publishable_WxLEJ8FFikq7T5jlj-o0lg_sw5aqmOn';
-
-const supabaseClient = window.supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_KEY,
-  {
-    auth: {
-      detectSessionInUrl: true,
-      persistSession: true,
-      autoRefreshToken: true
-    }
-  }
-);
- async function testarConexao() {
-  const { data, error } = await supabaseClient
-    .from('services')
-    .select('name')
-    .limit(1);
-
-  if (error) {
-    alert('Erro na conexão: ' + error.message);
-  } else {
-    alert('Conexão com o banco de dados estabelecida!');
-  }
-}
-
-testarConexao();
-</script>
 <body>
-
-<header>
-<button class="icon" onclick="alert('Menu em construção')">☰</button>
-<div class="logo">UGO<small>O BARBEIRO</small></div>
-<button class="icon" onclick="alert('Notificações em breve')">♧</button>
-</header>
-
-<main>
-<section id="login" style="
-  margin:20px 0 28px;
-  padding:28px 22px;
-  background:linear-gradient(145deg,#14243b,#090d15 75%);
-  border:1px solid #b9954b;
-  border-radius:22px;
-  box-shadow:0 12px 35px #0008;
-">
-  <div style="text-align:center;margin-bottom:25px;">
-
-    <div style="font-size:13px;color:#D6AD55;letter-spacing:4px;">
-      UGO O BARBEIRO
-    </div>
-    <h2 style="font-size:27px;margin:14px 0 8px;color:white;">
-      SEJA BEM-VINDO
-    </h2>
-    <p style="color:#aeb8c7;font-size:13px;">
-      Seu estilo começa com um acesso.
-    </p>
-    <p style="
-      color:#D6AD55;
-      font-size:11px;
-      margin-top:12px;
-      opacity:0.9;
-    ">
-      A criação de conta serve para agendamentos de cortes.
-    </p>
+<div id="auth-screen" class="auth-screen">
+ <section class="auth-card">
+  <div class="auth-brand"><div class="brand-mark">✂</div><h1>UGO O BARBEIRO</h1><p>Seu estilo começa com um bom atendimento.</p></div>
+  <div class="brand-images"><img src="./ugo-personagem-e-logo.jpg" alt="Personagem e logo Ugo"><img src="./ugo-identidade-vertical.jpg" alt="Identidade visual Ugo"></div>
+  <div id="auth-login">
+   <div class="field"><label for="auth-email">E-mail</label><input id="auth-email" type="email" autocomplete="email" placeholder="seuemail@exemplo.com"></div>
+   <div class="field"><label for="auth-password">Senha</label><input id="auth-password" type="password" autocomplete="current-password" placeholder="Sua senha"></div>
+   <div class="auth-links"><button class="link-btn" onclick="showAuth('signup')">Criar minha conta</button><button class="link-btn" onclick="sendReset()">Esqueci a senha</button></div>
+   <button id="login-btn" class="btn btn-primary btn-block" onclick="login()">ENTRAR NA MINHA CONTA →</button>
   </div>
-
-  <label style="color:#D6AD55;font-size:13px;">E-mail</label>
-  <input id="email" type="email"
-    placeholder="Digite seu e-mail"
-    style="width:100%;padding:16px;margin:8px 0 18px;
-    background:#080B12;color:white;border:1px solid #34445b;
-    border-radius:12px;font-size:15px;">
-
-  <label style="color:#D6AD55;font-size:13px;">Senha</label>
-  <input id="senha" type="password"
-    placeholder="Digite sua senha"
-    style="width:100%;padding:16px;margin:8px 0 10px;
-    background:#080B12;color:white;border:1px solid #34445b;
-    border-radius:12px;font-size:15px;">
-
-  <p style="text-align:right;margin:0 0 20px;">
-    <button type="button" onclick="esqueciSenha()" style="background:none;border:0;color:#D6AD55;font-size:13px;text-decoration:underline;">
-      Esqueci minha senha
-    </button>
-  </p>
-
-  <button class="btn" onclick="entrar()">
-    ENTRAR NA MINHA CONTA →
-  </button>
-
-  <p style="text-align:center;color:#aeb8c7;margin:20px 0 12px;font-size:13px;">
-    Ainda não tem cadastro?
-  </p>
-
-  <button class="outline" onclick="cadastrar()">
-    CRIAR MINHA CONTA
-  </button>
-</section>
-<div id="app-content">
-<section class="banner">
-<h1>ESTILO QUE<br><span class="gold">COMBINA COM VOCÊ!</span></h1>
-<p>Qualidade, estilo e respeito. Sua experiência na barbearia começa aqui.</p>
-<button class="btn" onclick="agendar()">Agendar agora →</button>
-</section>
-
-<h2>Nossos serviços</h2>
-
-<section class="grid">
-<div class="service"><span>✂</span><p>Cortes</p></div>
-<div class="service"><span>♟</span><p>Barba</p></div>
-<div class="service"><span>〰</span><p>Sobrancelha</p></div>
-<div class="service"><span>♨</span><p>Tratamentos</p></div>
-<div class="service"><span>✦</span><p>Combos</p></div>
-<div class="service"><span>🎁</span><p>Pacotes</p></div>
-</section>
-
-<section class="ai">
-<h2>✦ Espelho Virtual IA</h2>
-<p>Experimente um novo visual! Envie sua foto e veja uma simulação de como ficaria com o corte desejado.</p>
-<button class="outline" onclick="alert('Provador virtual será integrado na próxima etapa!')">Experimentar com IA →</button>
-</section>
-
-<h2>Seu próximo visual começa aqui.</h2>
-<button class="btn" onclick="agendar()">Quero agendar meu corte</button>
-<section id="recuperar-senha" style="
-  display:none;
-  margin:20px 0;
-  padding:28px 22px;
-  background:linear-gradient(145deg,#14243b,#090d15);
-  border:1px solid #D6AD55;
-  border-radius:20px;
-  box-shadow:0 12px 35px #0008;
-">
-  <div style="text-align:center;margin-bottom:22px;">
-    <div style="color:#D6AD55;font-size:12px;letter-spacing:3px;">UGO O BARBEIRO</div>
-    <h2 style="color:#D6AD55;font-size:25px;margin:12px 0;">CRIAR NOVA SENHA</h2>
-    <p style="color:#aeb8c7;line-height:1.5;">Digite e confirme sua nova senha para recuperar o acesso à sua conta.</p>
+  <div id="auth-signup" class="hidden">
+   <div class="field"><label for="signup-name">Nome completo</label><input id="signup-name" autocomplete="name" placeholder="Como podemos chamar você?"></div>
+   <div class="field"><label for="signup-phone">WhatsApp</label><input id="signup-phone" inputmode="tel" autocomplete="tel" placeholder="(00) 00000-0000"></div>
+   <div class="field"><label for="signup-email">E-mail</label><input id="signup-email" type="email" autocomplete="email" placeholder="seuemail@exemplo.com"></div>
+   <div class="field"><label for="signup-password">Senha (mínimo 6 caracteres)</label><input id="signup-password" type="password" autocomplete="new-password" placeholder="Crie uma senha"></div>
+   <button id="signup-btn" class="btn btn-primary btn-block" onclick="signup()">CRIAR CONTA</button>
+   <button class="link-btn" onclick="showAuth('login')">← Voltar para entrar</button>
   </div>
-  <label for="nova-senha" style="color:#D6AD55;font-size:13px;">Nova senha</label>
-  <input id="nova-senha" type="password" autocomplete="new-password"
-    placeholder="Mínimo de 6 caracteres"
-    style="width:100%;padding:16px;margin:8px 0 17px;background:#080B12;color:white;border:1px solid #34445b;border-radius:12px;font-size:15px;">
-  <label for="confirmar-nova-senha" style="color:#D6AD55;font-size:13px;">Confirmar nova senha</label>
-  <input id="confirmar-nova-senha" type="password" autocomplete="new-password"
-    placeholder="Digite a senha novamente"
-    style="width:100%;padding:16px;margin:8px 0 15px;background:#080B12;color:white;border:1px solid #34445b;border-radius:12px;font-size:15px;">
-  <p id="mensagem-recuperacao" role="status" style="display:none;margin:0 0 15px;font-size:13px;line-height:1.5;"></p>
-  <button id="btn-salvar-senha" class="btn" onclick="salvarNovaSenha()">SALVAR NOVA SENHA</button>
-  <button class="outline" style="margin-top:12px;" onclick="voltarLogin()">VOLTAR AO LOGIN</button>
-</section>
+  <div id="auth-reset" class="hidden">
+   <p class="muted">Informe seu e-mail na tela de entrada e solicite um link de recuperação.</p>
+   <div class="field"><label for="new-password">Nova senha</label><input id="new-password" type="password" autocomplete="new-password" placeholder="Nova senha"></div>
+   <div class="field"><label for="new-password-confirm">Confirmar senha</label><input id="new-password-confirm" type="password" autocomplete="new-password" placeholder="Repita a nova senha"></div>
+   <button id="reset-save-btn" class="btn btn-primary btn-block" onclick="saveNewPassword()">SALVAR NOVA SENHA</button>
+  </div>
+ </section>
 </div>
-<section id="minha-conta" class="account-view">
-  <div class="account-hero">
-
-    <h1>MINHA CONTA</h1>
-    <p>Seu estilo, seus agendamentos e suas estrelas em um só lugar.</p>
-  </div>
-  <div class="account-panel">
-    <h3>✦ Meu perfil</h3>
-    <p id="conta-email" class="account-muted">Carregando seus dados...</p>
-    <p class="account-muted silver" style="margin-top:6px">Cliente Ugo o Barbeiro</p>
-  </div>
-  <div class="account-panel">
-    <h3>★ Minhas estrelas</h3>
-    <div class="account-points"><span id="conta-pontos">0</span> ★</div>
-    <p class="account-muted">Seus pontos de fidelidade aparecerão aqui conforme os cortes forem registrados.</p>
-  </div>
-  <h2>Meus agendamentos</h2>
-  <div id="lista-agendamentos" class="account-panel account-muted">Seus próximos agendamentos aparecerão aqui quando forem cadastrados.</div>
-  <h2>Histórico de cortes</h2>
-  <div id="historico-cortes" class="account-panel account-muted">Seus cortes realizados aparecerão aqui.</div>
-  <h2>Cortes e preços</h2>
-  <div id="catalogo-conta" class="account-list"><div class="account-panel account-muted">Carregando catálogo...</div></div>
-  <button class="outline" style="margin-top:20px" onclick="voltarInicio()">VOLTAR AO INÍCIO</button>
-</section>
-</main>
-
-<nav id="bottom-nav" class="bottom">
-<button class="active"><span>⌂</span>Início</button>
-<button onclick="agendar()"><span>▦</span>Agendamentos</button>
-<button onclick="abrirMinhaConta()"><span>♙</span>Minha conta</button>
-<button onclick="alert('Mais opções em breve')"><span>•••</span>Mais</button>
-</nav>
-
+<div id="app" class="hidden">
+ <header class="topbar">
+  <div class="brand"><div class="brand-mark">✂</div><div class="brand-name">UGO<small>O BARBEIRO</small></div></div>
+  <div class="top-actions"><button class="round-btn" aria-label="Minha conta" onclick="navigate('account')">♙</button><button class="round-btn" aria-label="Sair da conta" onclick="logout()">↪</button></div>
+ </header>
+ <main class="shell">
+  <section id="view-home" class="view active">
+   <div class="hero"><div class="hero-copy"><div class="eyebrow">Barbearia • Estilo • Experiência</div><h1>Seu próximo visual começa <span>aqui.</span></h1><p>Escolha seu serviço, reserve seu horário e acompanhe sua jornada com a gente.</p><div class="actions"><button class="btn btn-primary" onclick="navigate('schedule')">AGENDAR MEU CORTE →</button><button class="btn btn-secondary" onclick="navigate('catalog')">VER SERVIÇOS</button></div></div></div>
+   <div class="section-head"><div><h2>O que você procura?</h2><p>Acesse rapidamente cada área do aplicativo.</p></div></div>
+   <div class="quick-grid">
+    <div class="quick-card" onclick="navigate('schedule')"><span class="quick-icon">▦</span><div><strong>Agendamentos</strong><span>Escolha dia e horário</span></div></div>
+    <div class="quick-card" onclick="navigate('catalog')"><span class="quick-icon">✂</span><div><strong>Cortes e valores</strong><span>Veja serviços e preços</span></div></div>
+    <div class="quick-card" onclick="navigate('points')"><span class="quick-icon">★</span><div><strong>Meus pontos</strong><span>Fidelidade e vantagens</span></div></div>
+    <div class="quick-card" onclick="navigate('location')"><span class="quick-icon">⌖</span><div><strong>Como chegar</strong><span>Endereço e mapa</span></div></div>
+   </div>
+   <div class="section-head"><div><h2>Serviços em destaque</h2><p>Escolha seu próximo cuidado.</p></div><button class="text-btn" onclick="navigate('catalog')">Ver todos →</button></div>
+   <div id="home-services" class="service-grid"><div class="panel muted">Carregando serviços...</div></div>
+   <div class="panel"><div class="eyebrow">Sua experiência Ugo</div><h2 style="margin-top:8px">Cada visita vale mais.</h2><p class="muted">Acompanhe seus cortes concluídos e suas estrelas na área de fidelidade.</p><button class="btn btn-secondary" onclick="navigate('points')">VER MINHAS ESTRELAS →</button></div>
+  </section>
+  <section id="view-schedule" class="view">
+   <div class="section-head"><div><div class="eyebrow">Reserva online</div><h2>Agende seu horário</h2><p>Preencha os dados para solicitar seu atendimento.</p></div></div>
+   <div class="panel">
+    <div class="form-grid">
+     <div class="field full"><label for="booking-service">Escolha o serviço</label><select id="booking-service"><option value="">Carregando serviços...</option></select></div>
+     <div class="field"><label for="booking-date">Dia desejado</label><input id="booking-date" type="date"></div>
+     <div class="field"><label for="booking-time">Horário desejado</label><select id="booking-time"><option value="">Selecione o dia primeiro</option></select></div>
+     <div class="field full"><div id="booking-summary" class="notice">Selecione um serviço para ver o valor e a duração.</div></div>
+     <div class="field full"><button id="booking-submit" class="btn btn-primary btn-block" onclick="createBooking()">CONFIRMAR SOLICITAÇÃO →</button><span class="help">Seu horário será registrado como pendente até a confirmação da barbearia. A disponibilidade é validada pelo banco de dados no envio.</span></div>
+    </div>
+   </div>
+   <div class="panel"><h3>Seus próximos horários</h3><div id="schedule-bookings" class="booking-list muted">Carregando...</div></div>
+  </section>
+  <section id="view-catalog" class="view">
+   <div class="section-head"><div><div class="eyebrow">Menu de serviços</div><h2>Cortes, cuidados e valores</h2><p>Veja os serviços disponíveis antes de reservar.</p></div></div>
+   <div id="catalog-services" class="service-grid"><div class="panel muted">Carregando catálogo...</div></div>
+  </section>
+  <section id="view-points" class="view">
+   <div class="section-head"><div><div class="eyebrow">Clube Ugo</div><h2>Minhas estrelas</h2><p>Seu histórico de fidelidade em um só lugar.</p></div></div>
+   <div class="points-hero"><div class="eyebrow">Seu saldo atual</div><div class="points-number"><span id="points-count">0</span> <span class="points-star">★</span></div><p class="muted">1 estrela por atendimento concluído e registrado no aplicativo.</p><div class="progress-track"><div id="points-progress" class="progress-fill"></div></div><small id="points-next" class="muted">Continue frequentando para acumular estrelas.</small></div>
+   <div class="panel"><h3>Como funciona</h3><p class="muted">Cada agendamento marcado como concluído pela barbearia soma uma estrela ao seu perfil. Seus pontos ficam vinculados à sua conta.</p></div>
+   <div class="panel"><h3>Seu histórico de visitas</h3><div id="points-history" class="booking-list muted">Carregando histórico...</div></div>
+  </section>
+  <section id="view-location" class="view">
+   <div class="section-head"><div><div class="eyebrow">Estamos esperando por você</div><h2>Endereço e localização</h2><p>Encontre a barbearia e trace sua rota.</p></div></div>
+   <div class="location-card"><div class="eyebrow">Ugo o Barbeiro</div><h2 id="business-address">Endereço da barbearia a configurar</h2><p id="business-reference" class="muted">O endereço completo e o ponto exato do mapa serão adicionados assim que forem confirmados.</p><div class="map-placeholder">⌖<div><span>Localização da barbearia</span></div></div><button class="btn btn-primary btn-block" onclick="openMap()">ABRIR ROTA NO MAPA ↗</button><p class="help" style="margin-top:12px">O mapa abrirá uma busca pelo nome da barbearia. Para mostrar o pin exato, precisamos cadastrar o endereço completo.</p></div>
+  </section>
+  <section id="view-account" class="view">
+   <div class="section-head"><div><div class="eyebrow">Área do cliente</div><h2>Minha conta</h2><p>Seus dados, visitas e preferências.</p></div></div>
+   <div class="panel"><h3>Meu perfil</h3><div class="form-grid"><div class="field full"><label for="profile-name">Nome completo</label><input id="profile-name" placeholder="Seu nome"></div><div class="field full"><label for="profile-phone">WhatsApp</label><input id="profile-phone" inputmode="tel" placeholder="Seu telefone"></div><div class="field full"><label for="profile-email">E-mail da conta</label><input id="profile-email" disabled></div><div class="field full"><button class="btn btn-primary btn-block" onclick="saveProfile()">SALVAR MEUS DADOS</button></div></div></div>
+   <div class="profile-grid"><div class="profile-stat"><span class="muted">Estrelas acumuladas</span><strong id="account-points">0 ★</strong></div><div class="profile-stat"><span class="muted">Cortes concluídos</span><strong id="account-completed">0</strong></div></div>
+   <div class="panel"><h3>Meus agendamentos</h3><div id="account-bookings" class="booking-list muted">Carregando...</div></div>
+   <div class="panel"><button class="btn btn-secondary btn-block" onclick="logout()">SAIR DA MINHA CONTA</button></div>
+  </section>
+ </main>
+ <nav class="bottom-nav" aria-label="Navegação principal">
+  <button class="nav-item active" data-view="home" onclick="navigate('home')"><span>⌂</span>Início</button>
+  <button class="nav-item" data-view="schedule" onclick="navigate('schedule')"><span>▦</span>Agendar</button>
+  <button class="nav-item" data-view="catalog" onclick="navigate('catalog')"><span>✂</span>Serviços</button>
+  <button class="nav-item" data-view="points" onclick="navigate('points')"><span>★</span>Pontos</button>
+  <button class="nav-item" data-view="account" onclick="navigate('account')"><span>♙</span>Conta</button>
+ </nav>
+</div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-function agendar(){
- alert("Em breve você poderá escolher seu serviço, horário e barbeiro!");
-}function dadosDeAcesso() {
-  const email = document.getElementById('email').value.trim().toLowerCase();
-  const senha = document.getElementById('senha').value;
-  if (!email) { alert('Digite seu e-mail.'); return null; }
-  if (!senha || senha.length < 6) { alert('Digite uma senha com pelo menos 6 caracteres.'); return null; }
-  return { email, senha };
-}
-
-async function entrar() {
-  const dados = dadosDeAcesso();
-  if (!dados) return;
-  const { error } = await supabaseClient.auth.signInWithPassword({ email: dados.email, password: dados.senha });
-  if (error) alert('Erro ao entrar: ' + error.message);
-  else {
-    alert('Bem-vindo ao Ugo o Barbeiro!');
-    ativarAplicativo();
-  }
-}
-
-async function cadastrar() {
-  const dados = dadosDeAcesso();
-  if (!dados) return;
-  const { error } = await supabaseClient.auth.signUp({ email: dados.email, password: dados.senha });
-  if (error) alert('Erro ao criar conta: ' + error.message);
-  else alert('Cadastro iniciado! Se a confirmação por e-mail estiver ativada, confira sua caixa de entrada e o spam.');
-}
-
-async function esqueciSenha() {
-  const email = document.getElementById('email').value.trim().toLowerCase();
-  if (!email) { alert('Digite seu e-mail no campo acima para receber o link de recuperação.'); return; }
-  const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
-    redirectTo: 'https://mariano-lins7.github.io/ugo-o-barbeiro/'
-  });
-  if (error) alert('Não foi possível enviar o link: ' + error.message);
-  else alert('Se esse e-mail estiver cadastrado, enviaremos um link de recuperação. Confira também o spam.');
-}
+const SUPABASE_URL='https://yucqfhoamnizduvesawd.supabase.co';
+const SUPABASE_KEY='sb_publishable_WxLEJ8FFikq7T5jlj-o0lg_sw5aqmOn';
+const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY,{auth:{detectSessionInUrl:true,persistSession:true,autoRefreshToken:true}});
+const BUSINESS_NAME='Ugo o Barbeiro';
+const BUSINESS_ADDRESS='';
+let currentUser=null,services=[],userBookings=[],toastTimer=null;
+const $=id=>document.getElementById(id);
+function toast(message,type='success'){const el=$('toast');el.textContent=message;el.className='toast show '+(type==='error'?'error':'success');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.className='toast',3400)}
+function showAuth(which){['login','signup','reset'].forEach(x=>$('auth-'+x).classList.toggle('hidden',x!==which))}
+function setBusy(id,busy,label){const b=$(id);if(!b)return;b.disabled=busy;if(busy){b.dataset.label=b.textContent;b.textContent=label||'AGUARDE...'}else{b.textContent=b.dataset.label||b.textContent}}
+function safeText(value){return String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function money(value){return Number(value||0).toLocaleString('pt-BR',{style:'currency',currency:'BRL'})}
+function durationLabel(n){return n+' min'}
+function localDateISO(d=new Date()){const x=new Date(d.getTime()-d.getTimezoneOffset()*60000);return x.toISOString().slice(0,10)}
+function setMinDate(){ $('booking-date').min=localDateISO(); }
+async function login(){const email=$('auth-email').value.trim(),password=$('auth-password').value;if(!email||!password){toast('Informe seu e-mail e sua senha.','error');return}setBusy('login-btn',true,'ENTRANDO...');const {error}=await supabaseClient.auth.signInWithPassword({email,password});setBusy('login-btn',false);if(error){toast(authError(error),'error');return}toast('Acesso realizado. Bem-vindo!')}
+async function signup(){const full_name=$('signup-name').value.trim(),phone=$('signup-phone').value.trim(),email=$('signup-email').value.trim(),password=$('signup-password').value;if(!full_name||!email||password.length<6){toast('Preencha nome, e-mail e uma senha com pelo menos 6 caracteres.','error');return}setBusy('signup-btn',true,'CRIANDO CONTA...');const {data,error}=await supabaseClient.auth.signUp({email,password,options:{data:{full_name,phone}}});setBusy('signup-btn',false);if(error){toast(authError(error),'error');return}if(data.session){toast('Conta criada com sucesso!')}else{showAuth('login');$('auth-email').value=email;toast('Cadastro iniciado. Confirme seu e-mail para entrar.')} }
+async function sendReset(){const email=$('auth-email').value.trim();if(!email){toast('Digite seu e-mail no campo de entrada.','error');return}const {error}=await supabaseClient.auth.resetPasswordForEmail(email,{redirectTo:location.origin+location.pathname});if(error)toast(authError(error),'error');else toast('Se o e-mail estiver cadastrado, enviaremos o link de recuperação.')}
+async function saveNewPassword(){const a=$('new-password').value,b=$('new-password-confirm').value;if(a.length<6||a!==b){toast(a.length<6?'A senha precisa ter pelo menos 6 caracteres.':'As senhas não conferem.','error');return}setBusy('reset-save-btn',true,'SALVANDO...');const {error}=await supabaseClient.auth.updateUser({password:a});setBusy('reset-save-btn',false);if(error){toast(authError(error),'error');return}toast('Senha alterada com sucesso!');showAuth('login')}
+function authError(e){const m=(e?.message||'').toLowerCase();if(m.includes('invalid login'))return 'E-mail ou senha incorretos.';if(m.includes('already registered'))return 'Este e-mail já possui cadastro.';if(m.includes('password'))return 'A senha não atende aos requisitos.';return e?.message||'Não foi possível concluir a operação.'}
+async function logout(){const {error}=await supabaseClient.auth.signOut();if(error){toast(authError(error),'error');return}currentUser=null;$('app').classList.add('hidden');$('auth-screen').classList.remove('hidden');showAuth('login');toast('Você saiu da sua conta.')}
+function navigate(view){document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));const target=$('view-'+view);if(!target)return;target.classList.add('active');document.querySelectorAll('.nav-item').forEach(b=>b.classList.toggle('active',b.dataset.view===view));window.scrollTo({top:0,behavior:'smooth'});if(view==='schedule')renderBookingList('schedule-bookings');if(view==='points')renderPoints();if(view==='account')renderAccount()}
+async function loadApp(){ $('auth-screen').classList.add('hidden');$('app').classList.remove('hidden');setMinDate();await Promise.all([loadServices(),loadProfileAndBookings()]);navigate('home')}
+async function loadServices(){const {data,error}=await supabaseClient.from('services').select('id,name,price,duration_minutes,image_url').eq('active',true).order('id');if(error){toast('Não foi possível carregar os serviços.','error');services=[]}else services=data||[];renderServices();populateServiceSelect()}
+function serviceImage(s){return s.image_url||'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=900&q=85'}
+function serviceCard(s){return '<article class="service-card"><img class="service-photo" src="'+safeText(serviceImage(s))+'" alt="Foto ilustrativa de '+safeText(s.name)+'" loading="lazy" onerror="this.style.display=\'none\'"><div class="service-info"><h3>'+safeText(s.name)+'</h3><div class="service-meta"><span>◷ '+durationLabel(s.duration_minutes)+'</span><span>Ugo</span></div><div class="service-price">'+money(s.price)+'</div><button class="btn btn-primary" onclick="chooseService('+Number(s.id)+')">AGENDAR SERVIÇO</button></div></article>'}
+function renderServices(){const cards=services.map(serviceCard).join('')||'<div class="panel muted">Nenhum serviço disponível no momento.</div>';$('home-services').innerHTML=cards;$('catalog-services').innerHTML=cards}
+function populateServiceSelect(){const sel=$('booking-service');sel.innerHTML='<option value="">Selecione um serviço</option>'+services.map(s=>'<option value="'+s.id+'">'+safeText(s.name)+' — '+money(s.price)+'</option>').join('');sel.onchange=updateBookingSummary}
+function chooseService(id){$('booking-service').value=String(id);updateBookingSummary();navigate('schedule')}
+function updateBookingSummary(){const s=services.find(x=>String(x.id)===$('booking-service').value);$('booking-summary').textContent=s?s.name+' • '+money(s.price)+' • '+durationLabel(s.duration_minutes):'Selecione um serviço para ver o valor e a duração.'}
+$('booking-date').addEventListener('change',populateTimes);
+function populateTimes(){const date=$('booking-date').value,sel=$('booking-time');sel.innerHTML='<option value="">Selecione um horário</option>';if(!date)return;const day=new Date(date+'T12:00:00').getDay();if(day===0){sel.innerHTML='<option value="">Fechado aos domingos</option>';return}for(let h=8;h<=18;h++){for(const m of [0,30]){if(h===18&&m>0)continue;const v=String(h).padStart(2,'0')+':'+String(m).padStart(2,'0');const candidate=new Date(date+'T'+v+':00');if(candidate<=new Date())continue;const o=document.createElement('option');o.value=v;o.textContent=v;sel.appendChild(o)}}if(sel.options.length===1)sel.innerHTML='<option value="">Sem horários para este dia</option>'}
+async function createBooking(){if(!currentUser){toast('Entre na sua conta para agendar.','error');return}const service=services.find(s=>String(s.id)===$('booking-service').value),date=$('booking-date').value,time=$('booking-time').value;if(!service||!date||!time){toast('Escolha serviço, dia e horário.','error');return}const start=new Date(date+'T'+time+':00'),end=new Date(start.getTime()+Number(service.duration_minutes)*60000);if(start<=new Date()){toast('Escolha um horário futuro.','error');return}const btn='booking-submit';setBusy(btn,true,'ENVIANDO SOLICITAÇÃO...');const {error}=await supabaseClient.from('bookings').insert({user_id:currentUser.id,service_id:service.id,start_at:start.toISOString(),end_at:end.toISOString(),status:'pending'});setBusy(btn,false);if(error){const msg=error.code==='23P01'?'Esse horário acabou de ser reservado. Escolha outro.':error.code==='23505'?'Já existe um agendamento nesse horário.':error.message||'Não foi possível criar o agendamento.';toast(msg,'error');return}toast('Solicitação enviada! Aguarde a confirmação da barbearia.');$('booking-date').value='';$('booking-time').innerHTML='<option value="">Selecione o dia primeiro</option>';await loadProfileAndBookings();renderBookingList('schedule-bookings')}
+async function loadProfileAndBookings(){if(!currentUser)return;const [p,b]=await Promise.all([supabaseClient.from('profiles').select('full_name,phone,points').eq('id',currentUser.id).maybeSingle(),supabaseClient.from('bookings').select('id,start_at,end_at,status,service_id,services(name,price,duration_minutes)').eq('user_id',currentUser.id).order('start_at',{ascending:false})]);if(p.error)toast('Não foi possível carregar seu perfil.','error');if(p.data){$('profile-name').value=p.data.full_name||'';$('profile-phone').value=p.data.phone||'';$('profile-email').value=currentUser.email||'';$('points-count').textContent=p.data.points??0;$('account-points').textContent=(p.data.points??0)+' ★'}if(b.error){toast('Não foi possível carregar seus agendamentos.','error');userBookings=[]}else userBookings=b.data||[];renderPoints();renderAccount();renderBookingList('schedule-bookings')}
+function bookingDate(v){return new Date(v).toLocaleString('pt-BR',{dateStyle:'medium',timeStyle:'short'})}
+function bookingItem(b){const name=b.services?.name||'Serviço';const st={pending:'Aguardando',confirmed:'Confirmado',completed:'Concluído',cancelled:'Cancelado'}[b.status]||b.status;return '<div class="booking-item"><div><strong>'+safeText(name)+'</strong><small>'+bookingDate(b.start_at)+' • '+money(b.services?.price||0)+'</small></div><span class="status '+safeText(b.status)+'">'+safeText(st)+'</span></div>'}
+function renderBookingList(id){const el=$(id);if(!el)return;const list=userBookings.filter(b=>b.status!=='cancelled'&&b.status!=='completed').sort((a,b)=>new Date(a.start_at)-new Date(b.start_at));el.innerHTML=list.length?list.map(bookingItem).join(''):'<p class="muted">Você ainda não tem agendamentos futuros.</p>'}
+function renderPoints(){const completed=userBookings.filter(b=>b.status==='completed');const points=Number($('points-count').textContent||completed.length);$('points-count').textContent=points;$('account-points').textContent=points+' ★';$('account-completed').textContent=completed.length;$('points-progress').style.width=(points%5)*20+'%';$('points-next').textContent=(5-(points%5))+' estrela(s) para completar o próximo ciclo de 5.';$('points-history').innerHTML=completed.length?completed.map(bookingItem).join(''):'<p class="muted">Quando a barbearia registrar seus cortes como concluídos, eles aparecerão aqui.</p>'}
+function renderAccount(){if(!currentUser)return;$('profile-email').value=currentUser.email||'';$('account-bookings').innerHTML=userBookings.length?userBookings.map(bookingItem).join(''):'<p class="muted">Seus agendamentos aparecerão aqui.</p>'}
+async function saveProfile(){const full_name=$('profile-name').value.trim(),phone=$('profile-phone').value.trim();if(!full_name){toast('Informe seu nome.','error');return}const {error}=await supabaseClient.from('profiles').update({full_name,phone}).eq('id',currentUser.id);if(error){toast('Não foi possível salvar seus dados: '+error.message,'error');return}toast('Perfil atualizado com sucesso!')}
+function openMap(){const q=BUSINESS_ADDRESS||BUSINESS_NAME;if(BUSINESS_ADDRESS){window.open('https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(BUSINESS_ADDRESS),'_blank','noopener')}else{window.open('https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(BUSINESS_NAME),'_blank','noopener')}}
+supabaseClient.auth.onAuthStateChange((event,session)=>{if(event==='PASSWORD_RECOVERY'){showAuth('reset');$('auth-screen').classList.remove('hidden');$('app').classList.add('hidden');return}if(session?.user){currentUser=session.user;$('auth-screen').classList.add('hidden');$('app').classList.remove('hidden');if(event==='SIGNED_IN'||event==='INITIAL_SESSION')loadApp()}else if(event==='SIGNED_OUT'){currentUser=null;$('app').classList.add('hidden');$('auth-screen').classList.remove('hidden');showAuth('login')}});
+(async()=>{const {data,error}=await supabaseClient.auth.getSession();if(error){toast('Não foi possível recuperar sua sessão.','error');return}if(data.session?.user){currentUser=data.session.user;await loadApp()}else{$('auth-screen').classList.remove('hidden')}})();
 </script>
-<script>
-function mostrarMensagemRecuperacao(texto, sucesso = false) {
-  const el = document.getElementById('mensagem-recuperacao');
-  el.textContent = texto;
-  el.style.display = 'block';
-  el.style.color = sucesso ? '#8ee0a1' : '#ff9999';
-}
-
-async function salvarNovaSenha() {
-  const novaSenha = document.getElementById('nova-senha').value;
-  const confirmar = document.getElementById('confirmar-nova-senha').value;
-  const botao = document.getElementById('btn-salvar-senha');
-
-  if (novaSenha.length < 6) {
-    mostrarMensagemRecuperacao('A senha precisa ter pelo menos 6 caracteres.');
-    return;
-  }
-  if (novaSenha !== confirmar) {
-    mostrarMensagemRecuperacao('As senhas não conferem. Digite novamente.');
-    return;
-  }
-
-  botao.disabled = true;
-  botao.textContent = 'SALVANDO...';
-  const { error } = await supabaseClient.auth.updateUser({ password: novaSenha });
-  botao.disabled = false;
-  botao.textContent = 'SALVAR NOVA SENHA';
-
-  if (error) {
-    mostrarMensagemRecuperacao('Não foi possível alterar a senha: ' + error.message);
-  } else {
-    mostrarMensagemRecuperacao('Senha alterada com sucesso! Agora você já pode entrar com a nova senha.', true);
-    document.getElementById('nova-senha').value = '';
-    document.getElementById('confirmar-nova-senha').value = '';
-    setTimeout(() => {
-      document.getElementById('recuperar-senha').style.display = 'none';
-      document.getElementById('login').style.display = 'block';
-    }, 1800);
-  }
-}
-
-function voltarLogin() {
-  document.body.classList.remove('modo-recuperacao');
-  document.getElementById('recuperar-senha').style.display = 'none';
-  document.getElementById('login').style.display = 'block';
-  document.getElementById('login').scrollIntoView({behavior:'smooth', block:'start'});
-}</script>
- <script>
-supabaseClient.auth.onAuthStateChange((event, session) => {
-  if (event === 'SIGNED_IN' && session) ativarAplicativo();
-  if (event === 'PASSWORD_RECOVERY') {
-    document.body.classList.add('modo-recuperacao');
-    document.getElementById('login').style.display = 'none';
-    document.getElementById('recuperar-senha').style.display = 'block';
-    document.getElementById('recuperar-senha').scrollIntoView({behavior:'smooth', block:'start'});
-  }
-});
-</script>
-
-<script>
-function ativarAplicativo(){
-  document.body.classList.add('autenticado');
-  document.body.classList.remove('modo-recuperacao');
-  document.getElementById('login').style.display='none';
-}
-supabaseClient.auth.getSession().then(({data})=>{
-  if(data.session) ativarAplicativo();
-});
-</script>
-
-
-<script>
-function voltarInicio(){
- document.getElementById('minha-conta').style.display='none';
- document.getElementById('app-content').style.display='block';
-}
-async function abrirMinhaConta(){
- document.getElementById('app-content').style.display='none';
- document.getElementById('minha-conta').style.display='block';
- document.querySelectorAll('.bottom button').forEach(b=>b.classList.remove('active'));
- const perfil=document.querySelector('.bottom button[onclick="abrirMinhaConta()"]');
- if(perfil) perfil.classList.add('active');
- const {data:{user}}=await supabaseClient.auth.getUser();
- document.getElementById('conta-email').textContent=user?.email || 'Conta não identificada';
- carregarCatalogoConta();
- carregarAgendamentosConta(user?.id);
-}
-async function carregarCatalogoConta(){
- const alvo=document.getElementById('catalogo-conta');
- const {data,error}=await supabaseClient.from('services').select('*').eq('active',true);
- if(error){alvo.innerHTML='<div class="account-panel account-muted">Não foi possível carregar os serviços agora.</div>';return;}
- if(!data?.length){alvo.innerHTML='<div class="account-panel account-muted">Nenhum serviço disponível no momento.</div>';return;}
- alvo.innerHTML=data.map(s=>{
-  const nome=s.name||s.title||'Serviço';
-  const preco=s.price??s.value??s.valor;
-  const foto=s.image_url||s.photo_url||s.image||'';
-  return '<article class="account-service">'+(foto?'<img src="'+foto+'" alt="'+nome.replace(/"/g,'&quot;')+'">':'<div style="height:115px;display:grid;place-items:center;color:#D6AD55;font-size:32px">✂</div>')+'<div><strong>'+nome+'</strong><div class="price">'+(preco!=null?'R$ '+Number(preco).toFixed(2).replace('.',','):'Consulte o preço')+'</div></div></article>';
- }).join('');
-}
-async function carregarAgendamentosConta(userId){
- if(!userId)return;
- const {data,error}=await supabaseClient.from('bookings').select('*').eq('user_id',userId);
- const lista=document.getElementById('lista-agendamentos');
- const historico=document.getElementById('historico-cortes');
- if(error){lista.textContent='Não foi possível consultar seus agendamentos agora.';return;}
- if(!data?.length){lista.textContent='Você ainda não possui agendamentos.';historico.textContent='Seu histórico aparecerá aqui após o primeiro corte.';return;}
- const dataTexto=b=>{const v=b.scheduled_at||b.booking_date||b.date||b.created_at; if(!v)return 'Data a confirmar';const d=new Date(v);return isNaN(d)?String(v):d.toLocaleString('pt-BR',{dateStyle:'short',timeStyle:'short'});};
- const nome=b=>b.service_name||b.service||b.title||'Agendamento';
- const pendentes=data.filter(b=>!['completed','concluido','concluído','cancelled','cancelado'].includes(String(b.status||'').toLowerCase()));
- const feitos=data.filter(b=>['completed','concluido','concluído'].includes(String(b.status||'').toLowerCase()));
- lista.innerHTML=pendentes.length?pendentes.map(b=>'<p style="padding:7px 0;border-bottom:1px solid #34445b"><strong>'+nome(b)+'</strong><br><span class="account-muted">'+dataTexto(b)+' • '+(b.status||'Pendente')+'</span></p>').join(''):'Você não possui agendamentos futuros.';
- historico.innerHTML=feitos.length?feitos.map(b=>'<p style="padding:7px 0;border-bottom:1px solid #34445b"><strong>'+nome(b)+'</strong><br><span class="account-muted">'+dataTexto(b)+'</span></p>').join(''):'Nenhum corte concluído registrado ainda.';
-}
-</script>
-
 </body>
 </html>
