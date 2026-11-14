@@ -330,7 +330,7 @@ async function esqueciSenha() {
   const email = document.getElementById('email').value.trim().toLowerCase();
   if (!email) { alert('Digite seu e-mail no campo acima para receber o link de recuperação.'); return; }
   const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
-    redirectTo: 'https://marianolins62-sys.github.io/ugo-o-barbeiro/'
+    redirectTo: 'https://mariano-lins7.github.io/ugo-o-barbeiro/'
   });
   if (error) alert('Não foi possível enviar o link: ' + error.message);
   else alert('Se esse e-mail estiver cadastrado, enviaremos um link de recuperação. Confira também o spam.');
