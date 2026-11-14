@@ -148,6 +148,20 @@ const supabaseClient = window.supabase.createClient(
   SUPABASE_URL,
   SUPABASE_KEY
 );
+ async function testarConexao() {
+  const { data, error } = await supabaseClient
+    .from('services')
+    .select('name')
+    .limit(1);
+
+  if (error) {
+    alert('Erro na conexão: ' + error.message);
+  } else {
+    alert('Conexão com o banco de dados estabelecida!');
+  }
+}
+
+testarConexao();
 </script>
 <body>
 
