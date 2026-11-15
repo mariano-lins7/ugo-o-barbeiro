@@ -83,6 +83,14 @@ img,picture,figure,.service-card,.service-photo,.view-art,.brand-mark,.auth-logo
 .points-brand img{width:138px!important;height:178px!important;object-fit:contain!important;object-position:bottom left!important;flex:none!important;clip-path:inset(7% 7% 2% 0);mask-image:linear-gradient(to right,transparent 0%,#000 22%,#000 100%);-webkit-mask-image:linear-gradient(to right,transparent 0%,#000 22%,#000 100%);border:0!important;outline:0!important;box-shadow:none!important;background:transparent!important}
 .points-brand>div{min-width:0;flex:1}
 @media(max-width:760px){.points-brand img{width:116px!important;height:150px!important}}
+
+/* Correção definitiva do layout da área de pontos */
+#view-points .points-brand{display:flex!important;justify-content:flex-start!important;align-items:center!important;gap:14px!important}
+#view-points .points-brand>div{order:0!important;flex:0 0 auto!important;text-align:left!important}
+#view-points .points-brand img{order:1!important;display:block!important;border:0!important;outline:0!important;box-shadow:none!important;background:transparent!important;padding:0!important;border-radius:0!important;clip-path:inset(12% 14% 12% 14%)!important;-webkit-clip-path:inset(12% 14% 12% 14%)!important;mask-image:none!important;-webkit-mask-image:none!important}
+#view-points .points-number{margin:0!important;text-align:left!important}
+@media(max-width:760px){#view-points .points-brand{justify-content:flex-start!important;gap:10px!important}#view-points .points-brand>div{order:0!important}#view-points .points-brand img{order:1!important;clip-path:inset(12% 14% 12% 14%)!important;-webkit-clip-path:inset(12% 14% 12% 14%)!important}}
+
 </style>
 </head>
 <body>
