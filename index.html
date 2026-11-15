@@ -91,6 +91,11 @@ img,picture,figure,.service-card,.service-photo,.view-art,.brand-mark,.auth-logo
 #view-points .points-number{margin:0!important;text-align:left!important}
 
 
+
+/* Cabeçalho: logotipo oficial em imagem, sem texto duplicado ou moldura */
+.topbar .brand{display:flex!important;align-items:center!important;min-width:0!important;gap:0!important}
+.topbar .topbar-logo{display:block!important;width:132px!important;height:44px!important;max-width:42vw!important;object-fit:contain!important;object-position:left center!important;margin:0!important;padding:0!important;background:transparent!important;border:0!important;border-radius:0!important;outline:0!important;box-shadow:none!important}
+@media(max-width:760px){.topbar .topbar-logo{width:116px!important;height:40px!important;max-width:40vw!important}}
 </style>
 </head>
 <body>
@@ -121,7 +126,7 @@ img,picture,figure,.service-card,.service-photo,.view-art,.brand-mark,.auth-logo
 </div>
 <div id="app" class="hidden">
  <header class="topbar">
-  <div class="brand"><div class="brand-name">UGO<small>O BARBEIRO</small></div></div>
+  <div class="brand"><img class="topbar-logo" src="./ugo-escrita.png?v=logo-topbar-20261116" alt="Ugo o Barbeiro"></div>
   <div class="top-actions"><button class="round-btn" aria-label="Minha conta" onclick="navigate('account')">♙</button><button class="round-btn" aria-label="Sair da conta" onclick="logout()">↪</button></div>
  </header>
  <main class="shell">
