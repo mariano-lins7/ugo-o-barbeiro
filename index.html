@@ -17,7 +17,7 @@
 *{box-sizing:border-box}html{scroll-behavior:smooth;width:100%;max-width:100%;overflow-x:hidden;overscroll-behavior-x:none;touch-action:pan-y}body{margin:0;width:100%;max-width:100%;overflow-x:hidden;background:var(--bg);color:var(--white);font-family:'DM Sans',Arial,sans-serif;min-height:100vh;padding-bottom:100px;overscroll-behavior-x:none}button,input,select,textarea{font:inherit;touch-action:manipulation}button{cursor:pointer}button:disabled{opacity:.55;cursor:not-allowed}
 .hidden{display:none!important}.shell{max-width:1080px;margin:auto;padding:0 18px}
 .topbar{height:76px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 max(18px,calc((100vw - 1044px)/2));background:#080d17ee;position:sticky;top:0;z-index:20;backdrop-filter:blur(18px)}
-.brand{display:flex;align-items:center;gap:11px;min-width:0}.brand-mark{width:43px;height:43px;border-radius:15px;background:#101a2a;display:grid;place-items:center;overflow:hidden;box-shadow:0 8px 24px #d6ad5533;flex:none}.brand-mark img{display:block;width:100%;height:100%;object-fit:contain;padding:2px}.brand-name{font:800 16px Manrope,sans-serif;letter-spacing:.4px}.brand-name small{display:block;color:var(--gold);font-size:9px;letter-spacing:3px;margin-top:2px}.top-actions{display:flex;gap:9px}.round-btn{width:42px;height:42px;border:0;border-radius:15px;background:var(--surface2);color:var(--gold2);font-size:18px}
+.brand{display:flex;align-items:center;gap:11px;min-width:0}.brand-mark{width:43px;height:43px;border-radius:15px;background:#101a2a;display:grid;place-items:center;overflow:hidden;box-shadow:0 8px 24px #d6ad5533;flex:none}.brand-mark img{display:block;width:100%;height:100%;object-fit:contain;padding:2px}.top-actions{display:flex;gap:9px}.round-btn{width:42px;height:42px;border:0;border-radius:15px;background:var(--surface2);color:var(--gold2);font-size:18px}
 main{padding-top:18px}.view{display:none;animation:appear .22s ease}.view.active{display:block}@keyframes appear{from{opacity:.3;transform:translateY(5px)}to{opacity:1;transform:none}}
 .eyebrow{color:var(--gold);font-size:11px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase}.hero{min-height:310px;border-radius:30px;padding:34px;display:flex;align-items:center;position:relative;overflow:hidden;background:radial-gradient(circle at 85% 25%,#28476b 0,transparent 35%),linear-gradient(120deg,#172e4b,#0e1726 70%);box-shadow:var(--shadow);margin:8px 0 28px}.hero:after{content:"✂";position:absolute;right:5%;bottom:-48px;font-size:230px;color:#e4bd6918;transform:rotate(-22deg);pointer-events:none}.hero-copy{position:relative;z-index:1;max-width:560px}.hero h1{font:800 clamp(32px,6vw,54px)/1.08 Manrope,sans-serif;margin:14px 0}.hero h1 span{color:var(--gold2)}.hero p{color:#c0cad8;line-height:1.7;max-width:470px;margin:0 0 23px}.actions{display:flex;gap:12px;flex-wrap:wrap}.btn{border:0;border-radius:16px;padding:15px 20px;font-weight:800;transition:transform .15s,filter .15s}.btn:active{transform:scale(.98)}.btn-primary{background:linear-gradient(110deg,#d6ad55,#f3d995);color:#101827;box-shadow:0 9px 25px #d6ad5528}.btn-secondary{background:#ffffff12;color:var(--gold2);padding:14px 18px}.btn-block{width:100%}
 .section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:30px 0 16px}.section-head h2{font:800 23px Manrope,sans-serif;margin:0}.section-head p{margin:5px 0 0;color:var(--muted);font-size:13px}.text-btn{border:0;background:none;color:var(--gold2);font-weight:800;padding:8px 0}
@@ -96,6 +96,13 @@ img,picture,figure,.service-card,.service-photo,.view-art,.brand-mark,.auth-logo
 .topbar .brand{display:flex!important;align-items:center!important;min-width:0!important;gap:0!important}
 .topbar .topbar-logo{display:block!important;width:132px!important;height:44px!important;max-width:42vw!important;object-fit:contain!important;object-position:left center!important;margin:0!important;padding:0!important;background:transparent!important;border:0!important;border-radius:0!important;outline:0!important;box-shadow:none!important}
 @media(max-width:760px){.topbar .topbar-logo{width:116px!important;height:40px!important;max-width:40vw!important}}
+
+/* Cabeçalho simplificado: somente a imagem oficial, sem texto HTML legado */
+#app .topbar .brand{display:flex!important;align-items:center!important;justify-content:flex-start!important;gap:0!important;width:auto!important;min-width:0!important;font-size:0!important;line-height:0!important;color:transparent!important}
+#app .topbar .brand-name,#app .topbar .brand-mark{display:none!important}
+#app .topbar .brand>.topbar-logo{display:block!important;visibility:visible!important;opacity:1!important;flex:none!important;width:140px!important;height:46px!important;max-width:48vw!important;object-fit:contain!important;object-position:left center!important;margin:0!important;padding:0!important;background:transparent!important;border:0!important;border-radius:0!important;outline:0!important;box-shadow:none!important}
+@media(max-width:760px){#app .topbar .brand>.topbar-logo{width:124px!important;height:42px!important;max-width:45vw!important}}
+
 </style>
 </head>
 <body>
@@ -126,7 +133,7 @@ img,picture,figure,.service-card,.service-photo,.view-art,.brand-mark,.auth-logo
 </div>
 <div id="app" class="hidden">
  <header class="topbar">
-  <div class="brand"><img class="topbar-logo" src="./ugo-escrita.png?v=logo-topbar-20261116" alt="Ugo o Barbeiro"></div>
+  <div class="brand"><img class="topbar-logo" src="./ugo-escrita.png?v=logo-topbar-final-20261114" alt="Ugo o Barbeiro"></div>
   <div class="top-actions"><button class="round-btn" aria-label="Minha conta" onclick="navigate('account')">♙</button><button class="round-btn" aria-label="Sair da conta" onclick="logout()">↪</button></div>
  </header>
  <main class="shell">
