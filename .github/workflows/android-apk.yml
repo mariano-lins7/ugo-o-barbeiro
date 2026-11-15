@@ -37,7 +37,7 @@ jobs:
           test -x "$SDKMANAGER"
           # Feed a finite set of answers. A live "yes" process can receive SIGPIPE
           # after sdkmanager closes stdin, which fails the step under pipefail.
-          printf 'y\\n%.0s' {1..100} | "$SDKMANAGER" --sdk_root=/usr/local/lib/android/sdk --licenses >/dev/null
+          printf 'y\n%.0s' {1..100} | "$SDKMANAGER" --sdk_root=/usr/local/lib/android/sdk --licenses >/dev/null
           "$SDKMANAGER" --sdk_root=/usr/local/lib/android/sdk --install "platform-tools" "platforms;android-35" "build-tools;35.0.0"
 
       - name: Set up Gradle
