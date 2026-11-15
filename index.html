@@ -38,70 +38,33 @@ main{padding-top:18px}.view{display:none;animation:appear .22s ease}.view.active
 @media(max-width:760px){.admin-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.admin-stat strong{font-size:21px}.admin-booking-top{align-items:flex-start}.admin-client{align-items:flex-start}}
 .auth-screen{min-height:100vh;display:grid;place-items:center;padding:24px 16px;background:radial-gradient(circle at 50% 0,#1a3658 0,transparent 45%),var(--bg)}.auth-card{width:min(100%,450px);background:linear-gradient(145deg,#172840,#0e1725);border-radius:28px;padding:27px;box-shadow:var(--shadow)}.auth-brand{text-align:center;margin-bottom:25px}.auth-brand .brand-mark{margin:0 auto 12px;width:76px;height:76px;border-radius:22px}.auth-brand h1{font:800 24px Manrope;margin:0}.auth-brand p{color:var(--muted);font-size:13px}.auth-card .field{margin:13px 0}.auth-links{display:flex;justify-content:space-between;gap:10px;margin:14px 0}.link-btn{background:none;border:0;color:var(--gold2);font-size:12px;font-weight:700;padding:8px 0}.auth-card .btn{margin-top:10px}@media(max-width:760px){html,body{width:100%;max-width:100%;overflow-x:hidden}input,select,textarea{font-size:16px!important}.shell{width:100%;max-width:100%;padding:0 14px}.topbar{height:68px;padding:0 14px}.hero{min-height:330px;padding:25px 21px;border-radius:25px}.hero:after{right:-5%;font-size:170px}.quick-grid{grid-template-columns:repeat(2,1fr)}.service-grid{grid-template-columns:repeat(2,1fr);gap:11px}.service-photo{height:145px}.service-info{padding:13px}.service-info h3{font-size:14px}.service-price{font-size:16px}.panel{padding:18px}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.section-head h2{font-size:20px}.profile-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:380px){.service-grid{grid-template-columns:1fr 1fr}.service-photo{height:125px}.nav-item{font-size:9px}.hero h1{font-size:31px}.auth-card{padding:22px}}
-/* Remoção global de molduras em todas as imagens e seus contêineres */
-img,picture,figure,.service-card,.service-photo,.view-art,.brand-mark,.auth-logo,.hero-art,.points-brand{border:0!important;outline:0!important;box-shadow:none!important}
-img{background-color:transparent!important;border-radius:0!important;padding:0!important}
-.brand-mark,.service-photo,.view-art,.auth-logo,.hero-art,.points-brand img{background:transparent!important;border-radius:0!important;box-shadow:none!important}
-.service-card{background:transparent!important}
-.service-photo{display:block;width:100%;border:0!important;outline:0!important}
-.brand-mark{background:transparent;border:0;border-radius:0;padding:0;box-shadow:none;display:flex;align-items:center;justify-content:center}.brand-mark img{width:100%;height:100%;object-fit:contain!important;object-position:center!important;padding:0;background:transparent;border:0;box-shadow:none}.auth-logo{width:150px;height:150px;object-fit:contain;background:transparent;border:0;border-radius:0;padding:0;display:block;margin:0 auto 15px;box-shadow:none}.hero{padding-right:34%}.hero-art{position:absolute;right:5%;top:50%;transform:translateY(-50%);width:min(30%,300px);height:180px;max-height:245px;object-fit:contain!important;object-position:center!important;background:transparent;border:0;border-radius:0;padding:0;box-shadow:none;z-index:1}.view-art{display:flex;align-items:center;gap:16px;padding:13px 16px;margin:10px 0 18px;border-radius:22px;background:transparent;border:0;box-shadow:none}.view-art img{width:92px;height:72px;object-fit:contain!important;object-position:center!important;background:transparent;border:0;border-radius:0;padding:0;box-shadow:none;flex:none}.view-art strong{display:block;font:800 15px Manrope;color:var(--gold2);margin-bottom:5px}.view-art span{font-size:12px;line-height:1.5;color:var(--silver)}.points-balance{display:block;margin-top:10px}.points-brand img{width:104px;height:82px;object-fit:contain!important;object-position:center!important;background:transparent;border:0;border-radius:0;padding:0;box-shadow:none}@media(max-width:760px){.hero{padding-right:21px}.hero-art{width:118px;height:100px;right:15px;top:auto;bottom:16px;transform:none;opacity:.22}.hero-copy{z-index:2}.view-art{gap:12px;padding:11px}.view-art img{width:78px;height:62px}.auth-logo{width:132px;height:132px}}
-/* Logos transparentes: sem molduras, contornos ou sombras */
-img,picture,figure,.service-card,.service-photo,.view-art,.brand-mark,.auth-logo,.hero-art,.points-brand img{
- border:0!important;outline:0!important;box-shadow:none!important;
-}
-.brand-mark,.auth-logo,.hero-art,.view-art,.view-art img,.points-brand img{
- background:transparent!important;
-}
-.brand-mark{border-radius:0!important}
-.brand-mark img,.auth-logo,.hero-art,.view-art img,.points-brand img{
- object-fit:contain;background:transparent!important;border:0!important;outline:0!important;box-shadow:none!important;
-}
-.auth-logo{width:150px;height:112px;display:block;margin:0 auto 15px;object-fit:contain!important;object-position:center!important}
-.hero-art{border:0!important;box-shadow:none!important}
-.view-art{border:0!important;box-shadow:none!important}
-.service-photo{border:0!important;outline:0!important;box-shadow:none!important}
 
-/* Logo Ugo: proporção horizontal original, transparente e com tamanho legível */
-.brand-mark{width:108px!important;height:40px!important;min-width:108px;display:flex!important;align-items:center;justify-content:center;overflow:visible!important;background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important}
-.brand-mark img{width:100%!important;height:100%!important;max-width:none!important;object-fit:contain!important;object-position:center!important;padding:0!important;background:transparent!important}
-.auth-logo{width:260px!important;height:96px!important;max-width:85%;object-fit:contain!important;object-position:center!important;margin:0 auto 20px!important}
-.hero-art{width:min(42%,320px)!important;height:140px!important;max-height:160px!important;object-fit:contain!important;opacity:1!important}
-.view-art img{width:132px!important;height:52px!important;object-fit:contain!important;flex:none!important}
-.points-brand img{width:150px!important;height:58px!important;object-fit:contain!important;flex:none!important}
+/* Imagens: sem molduras artificiais, preservando o formato de cada componente */
+.topbar .brand{display:flex;align-items:center;min-width:0;gap:0}
+.topbar .topbar-logo{display:block;width:140px;height:46px;max-width:48vw;object-fit:contain;object-position:left center;margin:0;padding:0;background:transparent;border:0;border-radius:0;outline:0;box-shadow:none}
+.auth-logo{display:block;width:min(260px,88%);height:96px;object-fit:contain;object-position:center;margin:0 auto 18px;background:transparent;border:0;box-shadow:none}
+.hero-art{position:absolute;right:5%;top:50%;transform:translateY(-50%);width:min(42%,320px);height:140px;max-height:160px;object-fit:contain;object-position:center;background:transparent;border:0;box-shadow:none;z-index:1}
+.service-card{overflow:hidden;border-radius:24px;background:var(--surface);box-shadow:0 12px 30px #0002}
+.service-photo{display:block;width:100%;height:190px;object-fit:cover;background:#101a2a;border:0;outline:0;box-shadow:none}
+.points-hero,.panel,.location-card{border:0;outline:0}
+/* Atalhos: ícone, título e descrição em blocos separados */
+.quick-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;align-items:stretch}
+.quick-card{display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:14px;width:100%;min-width:0;min-height:150px;padding:20px;text-align:left;font:inherit;color:var(--white);border:0;border-radius:22px;background:linear-gradient(145deg,var(--surface2),var(--surface));cursor:pointer;transition:transform .18s,background .18s}
+.quick-card:active{transform:scale(.98)}
+.quick-icon{display:block;flex:none;font-size:25px;line-height:1;color:var(--gold2)}
+.quick-copy{display:block;width:100%;min-width:0}
+.quick-copy strong{display:block;margin:0 0 6px;font:700 14px/1.3 Manrope,sans-serif;color:var(--white);overflow-wrap:anywhere}
+.quick-copy>span{display:block;margin:0;color:var(--muted);font:400 12px/1.5 'DM Sans',Arial,sans-serif;overflow-wrap:anywhere}
 @media(max-width:760px){
- .brand-mark{width:92px!important;height:34px!important;min-width:92px}
- .auth-logo{width:230px!important;height:85px!important}
- .hero-art{width:145px!important;height:65px!important;right:12px!important;bottom:12px!important;top:auto!important;opacity:.9!important}
- .view-art img{width:112px!important;height:44px!important}
- .points-brand img{width:120px!important;height:47px!important}
+ .topbar .topbar-logo{width:124px;height:42px;max-width:45vw}
+ .quick-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+ .quick-card{min-height:148px;padding:16px;gap:12px}
+ .service-photo{height:145px}
+ .hero{padding-right:21px}
+ .hero-art{width:145px;height:65px;right:12px;bottom:12px;top:auto;transform:none;opacity:.9}
+ .auth-logo{width:230px;height:85px}
 }
-
-/* Ajustes finais das seis etapas Ugo */
-.auth-brand .auth-logo{width:260px!important;height:96px!important;max-width:88%;object-fit:contain!important;margin:0 auto 18px!important}
-.auth-brand h1{display:none!important}
-.points-balance{display:block!important;margin-top:10px!important}
-
-
-
-
-/* Correção definitiva do layout da área de pontos */
-#view-points .points-balance{display:block!important}
-
-
-#view-points .points-number{margin:0!important;text-align:left!important}
-
-
-
-/* Cabeçalho: logotipo oficial em imagem, sem texto duplicado ou moldura */
-.topbar .brand{display:flex!important;align-items:center!important;min-width:0!important;gap:0!important}
-.topbar .topbar-logo{display:block!important;width:132px!important;height:44px!important;max-width:42vw!important;object-fit:contain!important;object-position:left center!important;margin:0!important;padding:0!important;background:transparent!important;border:0!important;border-radius:0!important;outline:0!important;box-shadow:none!important}
-@media(max-width:760px){.topbar .topbar-logo{width:116px!important;height:40px!important;max-width:40vw!important}}
-
-/* Cabeçalho simplificado: somente a imagem oficial, sem texto HTML legado */
-#app .topbar .brand{display:flex!important;align-items:center!important;justify-content:flex-start!important;gap:0!important;width:auto!important;min-width:0!important;font-size:0!important;line-height:0!important;color:transparent!important}
-#app .topbar .brand-name,#app .topbar .brand-mark{display:none!important}
-#app .topbar .brand>.topbar-logo{display:block!important;visibility:visible!important;opacity:1!important;flex:none!important;width:140px!important;height:46px!important;max-width:48vw!important;object-fit:contain!important;object-position:left center!important;margin:0!important;padding:0!important;background:transparent!important;border:0!important;border-radius:0!important;outline:0!important;box-shadow:none!important}
-@media(max-width:760px){#app .topbar .brand>.topbar-logo{width:124px!important;height:42px!important;max-width:45vw!important}}
+@media(max-width:380px){.quick-card{padding:14px;min-height:154px}.quick-copy strong{font-size:13px}.quick-copy>span{font-size:11px}.service-photo{height:125px}}
 
 </style>
 </head>
@@ -141,10 +104,10 @@ img,picture,figure,.service-card,.service-photo,.view-art,.brand-mark,.auth-logo
    <div class="hero"><img class="hero-art" src="./ugo-escrita.png?v=logo-20261115" alt="Identidade visual Ugo o Barbeiro"><div class="hero-copy"><div class="eyebrow">Barbearia • Estilo • Experiência</div><h1>Seu próximo visual começa <span>aqui.</span></h1><p>Escolha seu serviço, reserve seu horário e acompanhe sua jornada com a gente.</p><div class="actions"><button class="btn btn-primary" onclick="navigate('schedule')">AGENDAR MEU CORTE →</button><button class="btn btn-secondary" onclick="navigate('catalog')">VER SERVIÇOS</button></div></div></div>
    <div class="section-head"><div><h2>O que você procura?</h2><p>Acesse rapidamente cada área do aplicativo.</p></div></div>
    <div class="quick-grid">
-    <div class="quick-card" onclick="navigate('schedule')"><span class="quick-icon">▦</span><div><strong>Agendamento</strong><span>Escolha o dia e o horário</span></div></div>
-    <div class="quick-card" onclick="navigate('catalog')"><span class="quick-icon">✂</span><div><strong>Cortes e valores</strong><span>Consulte os cortes e seus respectivos valores</span></div></div>
-    <div class="quick-card" onclick="navigate('points')"><span class="quick-icon">★</span><div><strong>Meus pontos</strong><span>Acompanhe seus pontos e benefícios</span></div></div>
-    <div class="quick-card" onclick="navigate('location')"><span class="quick-icon">⌖</span><div><strong>Como chegar</strong><span>Consulte o endereço e veja como chegar</span></div></div>
+    <button type="button" class="quick-card" onclick="navigate('schedule')"><span class="quick-icon" aria-hidden="true">▦</span><span class="quick-copy"><strong>Agendamento</strong><span>Escolha o dia e o horário</span></span></button>
+    <button type="button" class="quick-card" onclick="navigate('catalog')"><span class="quick-icon" aria-hidden="true">✂</span><span class="quick-copy"><strong>Cortes e valores</strong><span>Consulte os cortes e seus respectivos valores</span></span></button>
+    <button type="button" class="quick-card" onclick="navigate('points')"><span class="quick-icon" aria-hidden="true">★</span><span class="quick-copy"><strong>Meus pontos</strong><span>Acompanhe seus pontos e benefícios</span></span></button>
+    <button type="button" class="quick-card" onclick="navigate('location')"><span class="quick-icon" aria-hidden="true">⌖</span><span class="quick-copy"><strong>Como chegar</strong><span>Consulte o endereço e veja como chegar</span></span></button>
    </div>
    <div class="section-head"><div><h2>Serviços em destaque</h2><p>Escolha seu próximo cuidado.</p></div><button class="text-btn" onclick="navigate('catalog')">Ver todos →</button></div>
    <div id="home-services" class="service-grid"><div class="panel muted">Carregando serviços...</div></div>
